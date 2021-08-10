@@ -1,2 +1,3 @@
-DROP DATABASE IF EXISTS students_db;
-CREATE DATABASE students_db;
+
+DROP DATABASE IF EXISTS student_behavior_db;
+CREATE DATABASE student_behavior_db;

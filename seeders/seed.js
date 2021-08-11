@@ -1,6 +1,7 @@
 //read json
 const studentsData = require('./studentsData.json');
-const {Student, sequelize} = require('../models/index');
+const {sequelize} = require('../config/connection');
+const {Student} = require('../models/Student');
 
 //connect to database
 console.log("studentsData: " + JSON.stringify(studentsData));

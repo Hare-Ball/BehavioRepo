@@ -1,26 +1,25 @@
 {
-  "name": "crowd-funding",
+  "name": "Project-2-Student-Behavior",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "seed": "node seeds/seed.js"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "main": "app.js",
+    "scripts": {
+    "start": "app.js"
+  },
   "dependencies": {
-    "bcrypt": "^5.0.0",
-    "bootstrap": "^5.1.0",
-    "connect-session-sequelize": "^7.0.4",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "bootstrap": "^5.1.0",
+    "connect-session-sequelize": "^7.0.4",
+    "find-config": "^1.0.0",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

@@ -1,51 +1,50 @@
 const router = require('express').Router();
 const { Student, Project, User } = require('../../models');
-//const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
-    //find all users
+    //find all students
     try{
-      const userData = await User.findAll({
-        //include: students?
+      const studentData = await Student.findAll({
+        //include: user?
       });
-      res.status(200).json(userData);
+      res.status(200).json(studentData);
     } catch (err) {
       res.status(500).json(err);
     }
     });
 
 router.get('/:id', async (req, res) => {
-    // find one user by its `id` value
+    // find one student by its `id` value
 
     try {
-      const userData = await User.findByPk(req.params.id, {
+      const studentData = await Student.findByPk(req.params.id, {
         //include: students?
       });
   
-      if (!userData) {
-        res.status(404).json({ message: 'No User found with this id!' });
+      if (!studentData) {
+        res.status(404).json({ message: 'No Student found with this id!' });
         return;
       }
   
-      res.status(200).json(userData);
+      res.status(200).json(studentData);
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
 router.post('/', async (req, res) => {
-  // create a new user
+  // create a new student
    try {
-    const userData = await User.create(req.body);
-     res.status(200).json(userData);
+    const studentData = await Student.create(req.body);
+     res.status(200).json(studentData);
    } catch (err) {
     res.status(400).json(err);
  }
  });
 
  router.put('/:id', (req, res) => {
-    // update a User by its `id` value
-    User.update(
+    // update a Student by its `id` value
+    Student.update(
     //   {
     //    id:req.body.id,
     //    category_name: req.body.category_name 
@@ -56,8 +55,8 @@ router.post('/', async (req, res) => {
     //     }
     //   }
     )
-    .then((updatedUser) => {
-      res.json(updatedUser);
+    .then((updatedStudent) => {
+      res.json(updatedStudent);
     })
     .catch((err) => res.json(err));
   });
@@ -65,18 +64,18 @@ router.post('/', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     // delete a User by its `id` value
     try {
-      const userData = await User.destroy({
+      const studentData = await Student.destroy({
         where: {
           id: req.params.id
         }
       });
   
-      if (!userData) {
-        res.status(404).json({ message: 'No User found with this id!' });
+      if (!studentData) {
+        res.status(404).json({ message: 'No Student found with this id!' });
         return;
       }
   
-      res.status(200).json(userData);
+      res.status(200).json(studentData);
     } catch (err) {
       res.status(500).json(err);
     }

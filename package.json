@@ -1,5 +1,5 @@
 {
-  "name": "Project-2-mine",
+  "name": "Project-2-Student-Behavior",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -13,7 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "app.js"
   },
   "keywords": [],
   "author": "",

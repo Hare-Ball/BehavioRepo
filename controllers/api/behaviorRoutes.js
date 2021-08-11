@@ -1,43 +1,42 @@
 const router = require('express').Router();
 const { Student, Project, User } = require('../../models');
-//const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
-    //find all users
+    //find all Behaviors
     try{
-      const userData = await User.findAll({
+      const behaviorData = await Behavior.findAll({
         //include: students?
       });
-      res.status(200).json(userData);
+      res.status(200).json(behaviorData);
     } catch (err) {
       res.status(500).json(err);
     }
     });
 
 router.get('/:id', async (req, res) => {
-    // find one user by its `id` value
+    // find one behavior by its `id` value
 
     try {
-      const userData = await User.findByPk(req.params.id, {
+      const behaviorData = await Behavior.findByPk(req.params.id, {
         //include: students?
       });
   
-      if (!userData) {
-        res.status(404).json({ message: 'No User found with this id!' });
+      if (!behaviorData) {
+        res.status(404).json({ message: 'No Behavior found with this id!' });
         return;
       }
   
-      res.status(200).json(userData);
+      res.status(200).json(behaviorData);
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
 router.post('/', async (req, res) => {
-  // create a new user
+  // create a new behavior
    try {
-    const userData = await User.create(req.body);
-     res.status(200).json(userData);
+    const behaviorData = await Behavior.create(req.body);
+     res.status(200).json(behaviorData);
    } catch (err) {
     res.status(400).json(err);
  }
@@ -45,7 +44,7 @@ router.post('/', async (req, res) => {
 
  router.put('/:id', (req, res) => {
     // update a User by its `id` value
-    User.update(
+    Behavior.update(
     //   {
     //    id:req.body.id,
     //    category_name: req.body.category_name 
@@ -56,8 +55,8 @@ router.post('/', async (req, res) => {
     //     }
     //   }
     )
-    .then((updatedUser) => {
-      res.json(updatedUser);
+    .then((updatedBehavior) => {
+      res.json(updatedBehavior);
     })
     .catch((err) => res.json(err));
   });
@@ -65,18 +64,18 @@ router.post('/', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     // delete a User by its `id` value
     try {
-      const userData = await User.destroy({
+      const behaviorData = await Behavior.destroy({
         where: {
           id: req.params.id
         }
       });
   
-      if (!userData) {
-        res.status(404).json({ message: 'No User found with this id!' });
+      if (!behaviorData) {
+        res.status(404).json({ message: 'No Behavior found with this id!' });
         return;
       }
   
-      res.status(200).json(userData);
+      res.status(200).json(behaviorData);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -84,4 +83,5 @@ router.post('/', async (req, res) => {
   
   module.exports = router;
   
+
 

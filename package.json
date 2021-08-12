@@ -1,5 +1,5 @@
 {
-  "name": "Project-2-Student-Behavior",
+  "name": "project-2-student-behavior",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -14,7 +14,6 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
-    "mysql2": "^2.2.5",
     "bootstrap": "^5.1.0",
     "connect-session-sequelize": "^7.0.4",
     "find-config": "^1.0.0",

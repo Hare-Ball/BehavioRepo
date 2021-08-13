@@ -6,18 +6,19 @@
   "author": "",
   "license": "ISC",
   "main": "app.js",
-    "scripts": {
-    "start": "app.js"
+  "scripts": {
+    "start": "node app.js",        
+    "seed": "node seeders/seed.js"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "mysql2": "^2.3.0",
     "bootstrap": "^5.1.0",
     "connect-session-sequelize": "^7.0.4",
     "find-config": "^1.0.0",
-    "mysql2": "^2.3.0",
     "sequelize": "^6.6.5"
   },
   "devDependencies": {

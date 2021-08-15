@@ -7,7 +7,7 @@ Student.init(
     {
         id: {type: DataTypes.INTEGER, primaryKey: true},
         firstName: {type: DataTypes.STRING, allowNull: false},
-        lastName: {type: DataTypes.STRING, allowNull: false}
+        lastName: {type: DataTypes.STRING, allowNull: false},
     }, {
         sequelize,
         modelName: 'student',

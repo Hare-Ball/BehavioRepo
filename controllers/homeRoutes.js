@@ -1,6 +1,6 @@
   
 const router = require('express').Router();
-const { Student, Behavior } = require('../models');
+const { Student, Teacher } = require('../models');
 
 router.get('/', async (req, res) => {
     const studentData = await Student.findAll().catch((err) => { 
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
       });
       // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it. 
       const students = studentData.map((student) => student.get({ plain: true }));
-      // We render the template, 'all', passing in dishes, a new array of serialized objects.
+     
       res.render('students', { students });
       });
 //     try {

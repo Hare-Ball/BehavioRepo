@@ -1,51 +1,43 @@
 [
   {
-    "id":"1234",
     "firstName":"Martina",
     "lastName":"Hodson"
   },
   {
-    "id":"1235",
     "firstName":"Reem",
-    "lastName":"Sparks"
+    "lastName":"Sparks",
+    "studentBehavior_id": 1
   },
   {
-    "id":"1236",
     "firstName":"Lynden",
     "lastName":"Parsons"
   },
   {
-    "id":"1237",
     "firstName":"Rayhan",
     "lastName":"Rodriquez"
   },
   {
-    "id":"1239",
     "firstName":"Priscilla",
     "lastName":"Lyons"
   },
   {
-    "id":"1240",
     "firstName":"Jane",
     "lastName":"Knight"
   },
   {
-    "id":"1241",
     "firstName":"Elina",
     "lastName":"Kelly"
   },
   {
-    "id":"1242",
+
     "firstName":"Mary",
     "lastName":"Bravo"
   },
   {
-    "id":"1243",
     "firstName":"Lianne",
     "lastName":"Carson"
   },
   {
-    "id":"1244",
     "firstName":"Jorden",
     "lastName":"Cleveland"
   }

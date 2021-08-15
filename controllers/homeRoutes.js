@@ -2,43 +2,43 @@
 const router = require('express').Router();
 const { Student, Teacher } = require('../models');
 
+// route to show all students
 router.get('/', async (req, res) => {
     const studentData = await Student.findAll().catch((err) => { 
         res.json(err);
       });
-      // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it. 
       const students = studentData.map((student) => student.get({ plain: true }));
-     
       res.render('students', { students });
       });
-//     try {
-//         const studentData = await Student.findAll();
-//         res.status(200).json(studentData)
-//         // console.log(studentData)
-//         const students = studentData.map((student) => student.get({ plain: true }));
 
-//         // res.sendFile(path.join(__dirname, '../views/layouts/main.handlebars'));
-//         res.render('students', {
-//             students});
 
-//     } catch (err) {
-//     res.status(500).json(err);
-//     }
+router.get('/behaviorForm/', async (req,res)=> {
+  
+})
 
-// });
 
+router.get('/student/:id', async (req, res) => {
+    try {
+        const studentData = await Student.findByPk(req.params.id);
+        const student = studentData.get({ plain: true });
+
+        res.render('studentProfile', {
+        ...student,
+        })
+    } catch {
+        res.status(500).json(err);  
+    }
+});
+
+//Trying to get behaviors to show on student page
 // router.get('/student/:id', async (req, res) => {
-//     try {
-//         const studentData = await Student.findByPk(req.params.id);
-//         const student = studentData.get({ plain: true });
+//   const behaviorData = await Behavior.findByPk(re.params.id).catch((err) => { 
+//       res.json(err);
+//     });
+//     const behaviors = behaviorData.map((behavior) => behavior.get({ plain: true }));
+//     res.render('students', { behavior });
+//     });
 
-//         res.render('students', {
-//         ...student,
-//         })
-//     } catch {
-//         res.status(500).json(err);  
-//     }
-// });
 
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {

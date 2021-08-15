@@ -1,12 +1,14 @@
 [
     {
-    "Name":"Lawrence Brown",
-    "Email":"lbrown@school.net",
-    "Password": "Password123"
+    "teacherName": "Lawrence Brown",
+    "username":"LawrenceBrown",
+    "email":"lbrown@school.net",
+    "password": "Password123"
    },
    {
-    "Name":"Kelda Stoker",
-    "Email":"kstoker@school.net",
-    "Password": "Password321"
+    "teacherName": "Kelda Stoker",
+    "username":"KeldaStoker",
+    "email":"kstoker@school.net",
+    "password": "Password123"
    }
 ]

@@ -1,13 +1,15 @@
 <div class="student-card">
   <div class="student-card-header">
-    {{firstName}}, {{lastName}}
+    <h1>Students:</h1>
   </div>
+  {{#each students as |student|}}
   <div class="card-body">
     <p>
-     Behaviors:
-      
+  {{student.id}}
+  {{student.lastName}}, {{student.firstName}}
     </p>
   </div>
+  {{/each}}
 </div>
 
 

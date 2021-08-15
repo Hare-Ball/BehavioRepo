@@ -10,7 +10,7 @@ Student.init(
         lastName: {type: DataTypes.STRING, allowNull: false}
     }, {
         sequelize,
-        modelName: 'Student',
+        modelName: 'student',
         timestamps: false,
         freezeTableName: true,
         underscored: true,

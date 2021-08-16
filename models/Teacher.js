@@ -20,6 +20,10 @@ Teacher.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
+    grade: {
+      type: DataTypes.INTEGER, 
+      allowNull: false
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,

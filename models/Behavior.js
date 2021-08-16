@@ -18,6 +18,13 @@ Behavior.init(
     behavior: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    student_id: {
+      type:DataTypes.INTEGER,
+      references: {
+        model: 'student',
+        key:'id'
+      }
     }
   },
   {

@@ -1,13 +1,12 @@
 <div class="student-card">
   <div class="student-card-header">
-    <h1>Students:</h1>
+    <h1>Teacher Name: {{Teacher}} Grade: {{Grade}}</h1>
   </div>
   {{#each students as |student|}}
   <div class="card-body">
-    <p>
-  {{student.id}}
-  {{student.lastName}}, {{student.firstName}}
-    </p>
+    <p> Student Role: {{students.length}}</p> 
+    <ul>{{#Students}}
+      <li>{{student.id}}, {{student.firstName}} {{student.lastName}}, Number of Incidents: {{bahaviorList.length}}</li> 
   </div>
   {{/each}}
 </div>

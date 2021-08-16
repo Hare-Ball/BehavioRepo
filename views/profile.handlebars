@@ -1,0 +1,15 @@
+
+<div class="text-center">
+  <h2>{{firstName}} {{lastName}}</h2>
+
+  <p>STUDENT BEHAVIORS:</p>
+{{#each behaviors as |behavior| }}
+  <p>{{behavior.student.studentBehavior_id}}</p>
+  
+  
+ {{/each}}
+  <p>
+    <button class="btn btn-primary">Update this student's behavior</button>
+  </p>
+</div>
+

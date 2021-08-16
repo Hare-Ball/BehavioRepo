@@ -7,30 +7,25 @@ async function editFormHandler(event) {
     
     var addButton = document.querySelector('.addButton');
 
-    function showStudents(data) {
-      var student = [];
-      var behavior = [];
-
-      for (var i = 0; i < data.length; i++) {
-        var studentData = data[i];
-        student.push(studentData.name);
-        behavior.push(studentData.behavior);
-      }
-    }
-
     addButton.addEventListener('click', function() {
-      var stuFirstName = firstName.value;
-      var stuLastName = lastName.value;
-      var stuBehavior = behavior.value;
 
-      if (stuFirstName === '' && stuLastName === '') {
-        student.push({
-          behavior: stuBehavior
-        });
+      if (firstName === '' && lastName === '') {
+        const response = await fetch (`/api/students`, {
+          method: 'POST',
+          body: JSON.stringify({ behavior }),
+          headers: { 'Content-Type': 'application/json'},
+        }),
+        
+        if (response.ok) {
+          document.location.replace('/studentForm');
+        } else {
+          alert('Failed, check name spelling.');
+        }
       }
+    
         showStudents(student);
-
-    });
+      });
+  
 showsStudents(student)
   }
 

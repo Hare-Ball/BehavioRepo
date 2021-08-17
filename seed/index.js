@@ -8,7 +8,7 @@ module.exports = peasant= {sow:async()=>{
             const  studentsCreated  = await Student.bulkCreate(studentData);
             console.log("---> studentsCreated :" + studentsCreated );
         } catch ( e ) {
-            console.log("---> e :" + e );
+            console.log("---> e :" + e + ". " + __filename);
         }
     }
 }

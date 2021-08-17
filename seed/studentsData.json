@@ -1,52 +1,52 @@
 [
   {
-    "id":"1234",
-    "firstName":"Martina",
-    "lastName":"Hodson"
+    "student_id":"1234",
+    "first_name":"Martina",
+    "last_name":"Hodson"
   },
   {
-    "id":"1235",
-    "firstName":"Reem",
-    "lastName":"Sparks"
+    "student_id":"1235",
+    "first_name":"Reem",
+    "last_name":"Sparks"
   },
   {
-    "id":"1236",
-    "firstName":"Lynden",
-    "lastName":"Parsons"
+    "student_id":"1236",
+    "first_name":"Lynden",
+    "last_name":"Parsons"
   },
   {
-    "id":"1237",
-    "firstName":"Rayhan",
-    "lastName":"Rodriquez"
+    "student_id":"1237",
+    "first_name":"Rayhan",
+    "last_name":"Rodriquez"
   },
   {
-    "id":"1239",
-    "firstName":"Priscilla",
-    "lastName":"Lyons"
+    "student_id":"1239",
+    "first_name":"Priscilla",
+    "last_name":"Lyons"
   },
   {
-    "id":"1240",
-    "firstName":"Jane",
-    "lastName":"Knight"
+    "student_id":"1240",
+    "first_name":"Jane",
+    "last_name":"Knight"
   },
   {
-    "id":"1241",
-    "firstName":"Elina",
-    "lastName":"Kelly"
+    "student_id":"1241",
+    "first_name":"Elina",
+    "last_name":"Kelly"
   },
   {
-    "id":"1242",
-    "firstName":"Mary",
-    "lastName":"Bravo"
+    "student_id":"1242",
+    "first_name":"Mary",
+    "last_name":"Bravo"
   },
   {
-    "id":"1243",
-    "firstName":"Lianne",
-    "lastName":"Carson"
+    "student_id":"1243",
+    "first_name":"Lianne",
+    "last_name":"Carson"
   },
   {
-    "id":"1244",
-    "firstName":"Jorden",
-    "lastName":"Cleveland"
+    "student_id":"1244",
+    "first_name":"Jorden",
+    "last_name":"Cleveland"
   }
 ]

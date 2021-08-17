@@ -11,7 +11,7 @@ app.use(router);
 
 const run = async () => {
 
-    const resultSynch = await sequelize.sync({force: false});
+    const resultSynch = await sequelize.sync({force: true});
     const resultSow = await peasant.sow();
     const resultServerStart = await app.listen(PORT, () => {
         console.log('Sever running on port: %j', PORT);

@@ -1,6 +1,9 @@
 const router = require('express').Router();
-const apiRoutes = require('./api');
+const student_routes = require('./myApi/studentRoutes');
+router.use('/api',student_routes);
 
-router.use('/api', apiRoutes);
+router.get('/',(req,res)=>{
+    res.status(200).send('<h1>Home root</h1>');
+})
 
 module.exports = router;

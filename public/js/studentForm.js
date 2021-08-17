@@ -1,36 +1,33 @@
-async function editFormHandler(event) {
+async function newFormHandler(event) {
     event.preventDefault();
   
     const firstName = document.querySelector('#firstName').value;
     const lastName = document.querySelector('#lastName').value;
     const behavior = document.querySelector('#behavior').value;
-    
+    const behavior = document.querySelector('#behaviorNote').value;
     var addButton = document.querySelector('.addButton');
 
-    addButton.addEventListener('click', function() {
+    
 
-      if (firstName === '' && lastName === '') {
+      if (firstName && lastName && behavior && behaviorNote) {
         const response = await fetch (`/api/students`, {
           method: 'POST',
-          body: JSON.stringify({ behavior }),
+          body: JSON.stringify({ firstName, lastName, behavior, behaviorNote }),
           headers: { 'Content-Type': 'application/json'},
         }),
         
         if (response.ok) {
           document.location.replace('/studentForm');
         } else {
-          alert('Failed, check name spelling.');
+          alert('Failed to add.');
         }
-      }
-    
-        showStudents(student);
-      });
-  
-showsStudents(student)
-  }
+     }  
+  };
 
 
-
+document
+.querySelector('.add-student-behavior')
+.addEventListener('submit', newFormHandler);
 
 
 

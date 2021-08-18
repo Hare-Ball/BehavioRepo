@@ -2,53 +2,51 @@
   {
     "firstName":"Martina",
     "lastName":"Hodson",
-    "grade": "9"
+    "studentGrade": 9
   },
   {
     "firstName":"Reem",
     "lastName":"Sparks",
-    "grade": "10",
-    "studentBehavior_id": 1
+    "studentGrade": 10
   },
   {
     "firstName":"Lynden",
     "lastName":"Parsons",
-    "grade": "11"
+    "studentGrade": 11
   },
   {
     "firstName":"Rayhan",
     "lastName":"Rodriquez",
-    "grade": "12"
+    "studentGrade": 12
   },
   {
     "firstName":"Priscilla",
     "lastName":"Lyons",
-    "grade": "9"
+    "studentGrade": 9
   },
   {
     "firstName":"Jane",
     "lastName":"Knight",
-    "grade": "10"
+    "studentGrade": 10
   },
   {
     "firstName":"Elina",
     "lastName":"Kelly",
-    "grade": "11"
+    "studentGrade": 11
   },
   {
-
     "firstName":"Mary",
     "lastName":"Bravo",
-    "grade": "12"
+    "studentGrade": 12
   },
   {
     "firstName":"Lianne",
     "lastName":"Carson",
-    "grade": "9"
+    "studentGrade": 9
   },
   {
     "firstName":"Jorden",
     "lastName":"Cleveland",
-    "grade": "10"
+    "studentGrade": 10
   }
 ]

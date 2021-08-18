@@ -13,18 +13,18 @@ router.get('/', async (req, res) => {
       });
 
 
-router.get('/profile', async (req,res)=> {
- 
+router.get('/teacher/:id', async (req,res)=> {
+ try{
     const teacherData = await Teacher.findByPk(req.params.id);
     const teacher = teacherData.get({ plain: true });
 
     res.render('profile', {
-    ...teacher,
+  ...teacher,
     })
   
-// } catch {
-//     res.status(500).json(err);  
-// }
+} catch {
+    res.status(500).json(err);  
+}
 });
 
 

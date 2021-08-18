@@ -21,18 +21,19 @@
             </div>
 </div> --}}
 
-{{!-- 
 <div class="text-center">
-  <h2>{{firstName}} {{lastName}}</h2>
+  {{!-- {{#each teacher as |teacher|}} --}}
+  <h2>Welcome {{teacher.teacherName}}</h2>
 
-  <p>STUDENT BEHAVIORS:</p>
-{{#each behaviors as |behavior| }}
+  <p>Your current student behaviors:</p>
+{{!-- {{#each behaviors as |behavior| }} --}}
   <p>{{behavior.student.studentBehavior_id}}</p>
   
   
- {{/each}}
+ {{!-- {{/each}} --}}
   <p>
     <button class="btn btn-primary">Update this student's behavior</button>
   </p>
-</div> --}}
+  {{!-- {{/each}} --}}
+</div>
 

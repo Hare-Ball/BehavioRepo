@@ -4,17 +4,28 @@ const { Student, Teacher } = require('../models');
 
 // route to show all students
 router.get('/', async (req, res) => {
-    const studentData = await Student.findAll().catch((err) => { 
+
+    const studentData = await Student.findAll({}).catch((err) => { 
         res.json(err);
       });
       const students = studentData.map((student) => student.get({ plain: true }));
-      res.render('students', { students });
+      res.render('homepage', { students });
       });
 
 
-router.get('/behaviorForm/', async (req,res)=> {
+router.get('/profile', async (req,res)=> {
+ 
+    const teacherData = await Teacher.findByPk(req.params.id);
+    const teacher = teacherData.get({ plain: true });
+
+    res.render('profile', {
+    ...teacher,
+    })
   
-})
+// } catch {
+//     res.status(500).json(err);  
+// }
+});
 
 
 router.get('/student/:id', async (req, res) => {
@@ -22,7 +33,7 @@ router.get('/student/:id', async (req, res) => {
         const studentData = await Student.findByPk(req.params.id);
         const student = studentData.get({ plain: true });
 
-        res.render('studentProfile', {
+        res.render('students', {
         ...student,
         })
     } catch {

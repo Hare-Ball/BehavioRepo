@@ -1,6 +1,7 @@
   
 const router = require('express').Router();
 const { Student, Teacher } = require('../models');
+const withAuth = require('../utils/auth');
 
 // route to show all students
 router.get('/', async (req, res) => {
@@ -39,6 +40,25 @@ router.get('/student/:id', async (req, res) => {
     } catch {
         res.status(500).json(err);  
     }
+});
+
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const teacherData = await Teacher.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Teacher }],
+    });
+
+    const teacher = teacherData.get({ plain: true });
+    console.log(teacher)
+    res.render('profile', {
+      ...teacher,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //Trying to get behaviors to show on student page

@@ -4,8 +4,8 @@ const {Studentx} = require('../../models/index');
 
 router.get('/allStudents', async (req, res) => {
     try {
-        const Studentxs = await Student.findAll();
-        console.log("---> Studentxs :" + JSON.stringify(students));
+        const Studentxs = await Studentx.findAll();
+        console.log("---> Studentxs :" + JSON.stringify(Studentxs));
         return res.status(200).json(Studentxs);
     } catch (e) {
         return res.status(500).send(e.message);

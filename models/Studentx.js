@@ -2,7 +2,7 @@ const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class Student extends Model {
+class Studentx extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,16 +12,16 @@ class Student extends Model {
         // define association here
     }
 };
-Student.init({
+Studentx.init({
     student_id: {type: DataTypes.INTEGER, primaryKey: true},
     first_name: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false}
 }, {
     sequelize,
     timestamps: false,
-    modelName: 'Student',
+    modelName: 'Studentx',
     freezeTableName: true,
     underscored: true,
 });
 
-module.exports = Student;
+module.exports = Studentx;

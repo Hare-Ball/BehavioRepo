@@ -1,3 +1,3 @@
-const Student = require('./Student');
+const Studentx = require('./Studentx');
 
-module.exports = {Student};
+module.exports = {Studentx};

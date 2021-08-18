@@ -4,7 +4,7 @@ const { Student, Teacher } = require('../models');
 
 // route to show all students
 router.get('/', async (req, res) => {
-    const studentData = await Student.findAll().catch((err) => { 
+    const studentData = await Student.findAll({}).catch((err) => { 
         res.json(err);
       });
       const students = studentData.map((student) => student.get({ plain: true }));

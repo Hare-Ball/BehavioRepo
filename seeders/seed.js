@@ -16,15 +16,14 @@ const seedDatabase = async () => {
     console.log("---> sequelize: ");
 
 // create and save objects to database
-    const student = await Student.bulkCreate(studentsData);
-    console.log("---> student: " + JSON.stringify(student));
-
     const teacher = await Teacher.bulkCreate(teacherData);
     console.log("---> teacher: " + JSON.stringify(teacher));
 
+    const student = await Student.bulkCreate(studentsData);
+    console.log("---> student: " + JSON.stringify(student));
+
     const behavior = await Behavior.bulkCreate(behaviorData);
     console.log("---> behavior: " + JSON.stringify(behavior));
-
 
 
     // Exit the process

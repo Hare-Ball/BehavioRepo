@@ -3,6 +3,8 @@ module.exports = {
       return date.toLocaleTimeString();
     },
 
+if user_id = teacher.id
+return teacherName
 
     
     };

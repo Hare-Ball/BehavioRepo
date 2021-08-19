@@ -7,7 +7,7 @@
   <title>Behavior Managment System</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
-  <script type="text/javascript" src="/path/to/jquery.cascadingdropdown.js"></script>
+ 
 </head>
 
 <body>
@@ -16,7 +16,7 @@
       <h1>
         <a href="/">Behavior Management System</a>
       </h1>
-    </header>
+    
      <nav>
         {{!-- <!-- Conditionally render login or logout links -->
         {{#if logged_in}} --}}
@@ -26,6 +26,7 @@
         <a href="/login">login</a>
         {{!-- {{/if}} --}}
       </nav>
+      </header>
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}

@@ -1,7 +1,7 @@
   
 const router = require('express').Router();
 const { Student, Teacher } = require('../models');
-const withAuth = require('../utils/auth');
+// const withAuth = require('../utils/auth');
 
 // route to show all students
 router.get('/', async (req, res) => {
@@ -28,6 +28,20 @@ router.get('/teacher/:id', async (req,res)=> {
 }
 });
 
+router.get('/student', async (req, res) => {
+  try {
+    const studentData = await Student.findAll({}).catch((err) => { 
+      res.json(err);
+    });
+    const students = studentData.map((student) => student.get({ plain: true }));
+      res.render('students', {
+      ...students,
+      })
+  } catch {
+      res.status(500).json(err);  
+  }
+});
+
 
 router.get('/student/:id', async (req, res) => {
     try {
@@ -42,19 +56,18 @@ router.get('/student/:id', async (req, res) => {
     }
 });
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const teacherData = await Teacher.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Teacher }],
+    const teacherData = await Teacher.findAll({}).catch((err)=> {
+
     });
 
     const teacher = teacherData.get({ plain: true });
     console.log(teacher)
     res.render('profile', {
       ...teacher,
-      logged_in: true
+      // logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);

@@ -6,12 +6,15 @@
 <div class="row mt-4">
   <div class="col-md-6">
     <h3>Add Student Behavior</h3>
-    <form class="form add-student-behavior"
+    <form class="form add-student-behavior"></form>
+    <div id="dropdowns">
+      <select class="step" name="typeId">
     <div class="list-group">
       <label for="firstName">First Name</label>
-      <select class="firstName">
+      <select (firstName)="">
         <option value="">Select</option>
-        {{#each firstName}}
+        <a href="/student/{{student.id}}"
+        {{#each student.firstName}}
         <option>{{this}}</option>
         {{/each}}
         </select>
@@ -21,7 +24,7 @@
       <label for="lastName">Last Name</label>
       <select class="lastName">
         <option value="">Select</option>
-        {{#each lastName}}
+        {{#each student.lastName}}
         <option>{{this}}</option>
         {{/each}}
         </select>
@@ -36,7 +39,7 @@
         {{/each}}
       </select>
     </div>
-
+    </div>
     <div class="list-group">
       <label for="behaviorNote">description:</label>
       <textarea class="form-input" id="behaviorNote" name="behaviorNote"></textarea>

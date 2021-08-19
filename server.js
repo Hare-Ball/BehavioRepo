@@ -57,4 +57,5 @@ sequelize.sync({ force: false }).then(() => {
     console.log("http://localhost:%j/api/students/", PORT);
     console.log("http://localhost:%j/api/students/:id", PORT);
     console.log("http://localhost:%j/api/students/:id", PORT);
+    
 });

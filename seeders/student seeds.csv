@@ -8,4 +8,4 @@ id,first_name,last_name,student_grade,behavior_note,date_created,teacher_id,stud
 7,Elina,Kelly,11,NULL,NULL,NULL,NULL
 8,Mary,Bravo,12,NULL,NULL,NULL,NULL
 9,Lianne,Carson,9,NULL,NULL,NULL,NULL
-10,Jorden,Cleveland,NULL,NULL,NULL,NULL,NULL
+10,Jorden,Cleveland,NULL,NULL,NULL,NULL, NULL

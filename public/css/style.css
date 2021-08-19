@@ -1,0 +1,27 @@
+body {
+    background-color: #e9f98d;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: #13293d;
+    color: #fff;
+}
+
+h1 a {
+    font-size: 150%;
+}
+
+h3 {
+    font-size: 75%;
+}
+
+
+
+
+

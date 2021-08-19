@@ -2,50 +2,53 @@
   <div class="col-auto">
     <h1>Teacher Name: {{teacherName}} Grade: {{grade}}</h1>
   </div>
+</div>  
 
 <div class="row mt-4">
   <div class="col-md-6">
     <h3>Add Student Behavior</h3>
-    <form class="form add-student-behavior"
-    <div class="list-group">
-      <label for="firstName">First Name</label>
-      <select class="firstName">
-        <option value="">Select</option>
-        {{#each firstName}}
-        <option>{{this}}</option>
-        {{/each}}
+    <div class="form add-student-behavior"> 
+      <div class="list-group">
+        <label for="firstName">First Name</label>
+        <select class="firstName">
+          <option value="">Select</option>
+          {{#each firstName}}
+          <option>{{this}}</option>
+          {{/each}}
         </select>
-    </div>
-
-    <div class="list-group">
-      <label for="lastName">Last Name</label>
-      <select class="lastName">
-        <option value="">Select</option>
-        {{#each lastName}}
-        <option>{{this}}</option>
-        {{/each}}
-        </select>
-    </div>
-
-    <div class="list-group">
-      <label for="behavior">Behaviors</label>
-      <select class="">
-        <option value="">Selector</option>
-        {{#each behavior}}
-        <option>{{this}}</option>
-        {{/each}}
+      </div>
+    </div>  
+  </div>
+  <div class="list-group">
+    <label for="lastName">Last Name</label>
+    <select class="lastName">
+      <option value="">Select</option>
+      {{#each lastName}}
+      <option>{{this}}</option>
+      {{/each}}
       </select>
-    </div>
+  </div>
 
-    <div class="list-group">
-      <label for="behaviorNote">description:</label>
-      <textarea class="form-input" id="behaviorNote" name="behaviorNote"></textarea>
-    </div>
+  <div class="list-group">
+    <label for="behavior">Behaviors</label>
+    <select class="">
+      <option value="">Selector</option>
+      {{#each behavior}}
+      <option>{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
 
-    <div class="list-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-<script src=".js/studentForm.js"></script>
+  <div class="list-group">
+    <label for="behaviorNote">description:</label>
+    <textarea class="form-input" id="behaviorNote" name="behaviorNote"></textarea>
+  </div>
+
+  <div class="list-group">
+    <button type="submit" class="btn btn-primary">Create</button>
+  </div>
+</div>    
+<script src="./js/studentForm.js"></script>
 
 
   {{!-- {{#each students as |student|}}

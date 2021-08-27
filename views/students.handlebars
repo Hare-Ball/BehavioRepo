@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-auto">
+    <h1>Teacher Name: {{teacherName}}</h1><h>Grade: {{grade}}</h1>
     <h2>Welcome, {{teacher.teacherName}}!</h2>
   </div>
 </div>
@@ -25,83 +26,46 @@
 {{!-- <div class="row">
   <div class="col-auto">
     <h1>Teacher Name: {{teacherName}} Grade: {{grade}}</h1>
-  </div>
 
+  </div>
+ </div>
 <div class="row mt-4">
   <div class="col-md-6">
+    <div class="list-group">
     <h3>Add Student Behavior</h3>
+    {{#each Student as |student| }}
     <form class="form add-student-behavior"></form>
-    <div id="dropdowns">
-      <select class="step" name="typeId">
-    <div class="list-group">
       <label for="firstName">First Name</label>
-      <select (firstName)="">
-        <option value="">Select</option>
-        <a href="/student/{{student.id}}"
-        {{#each student.firstName}}
-        <option>{{this}}</option>
-        {{/each}}
-        </select>
+     
+      
+        {{student.firstName}}
+      </div>
     </div>
+   </div>
 
-    <div class="list-group">
-      <label for="lastName">Last Name</label>
-      <select class="lastName">
-        <option value="">Select</option>
-        {{#each student.lastName}}
-        <option>{{this}}</option>
-        {{/each}}
-        </select>
-    </div>
+{{/each}}
+  
+  {{#if Students.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Projects:</h3>
 
-    <div class="list-group">
-      <label for="behavior">Behaviors</label>
-      <select class="">
-        <option value="">Selector</option>
-        {{#each behavior}}
-        <option>{{this}}</option>
-        {{/each}}
-      </select>
-    </div>
-    </div>
-    <div class="list-group">
-      <label for="behaviorNote">description:</label>
-      <textarea class="form-input" id="behaviorNote" name="behaviorNote"></textarea>
-    </div>
-
+    {{#each Students as |student|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/student/{{student.id}}">{{student.firstName}}</a></h4>
+      </div>
+    </div>  
+    {{/each}}
+      </div>
+  {{/if}}
     <div class="list-group">
         <button type="submit" class="btn btn-primary">Create</button>
     </div>
 <script src=".js/studentForm.js"></script> --}}
 
 
-  {{!-- {{#each students as |student|}}
-  <div class="card-body">
-    <p> Student Role: {{students.length}}</p> 
-    <ul>{{#Students}}
-      <li>{{student.id}}, {{student.firstName}} {{student.lastName}}, Number of Incidents: {{bahaviorList.length}}</li> 
-  </div>
-  {{/each}}
-</div> --}}
 
 
 
 
-<!-- Loop over each object in the projects array -->
-{{!-- {{#each student as |student| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/{{student.id}}">{{student.firstname}}, {{student.lastname}}</a>
-    </h2>
-    {{!-- <p>Created by {{project.username}} on {{format_date project.date_created}}</p> --}}
-  {{!-- </div>
-  <div class="col-md-7">
-    <p>
-      {{!-- {{project.description}} --}}
-    {{!-- </p>
-  </div>
-</div>
-{{/each}} --}}
+

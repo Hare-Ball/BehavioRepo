@@ -1,19 +1,38 @@
 const router = require('express').Router();
-const { Student } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Student} = require('../../models');
+// const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newStudent = await Student.create({
-      ...req.body,
-      user_id: req.session.user_id,
+
+router.get('/',(req, res) => {
+  Student.findAll({
+      attributes: ['student_name', 'student_grade', 'teacher_id'],
+      include: [{
+        model: Behavior,
+        attributes: ['behavior']
+      },
+    {
+      model: BehaviorNote,
+      attributes: ['behavior_note']
+    }]
+
+  }).then (studentTable => res.json(studentTable))
+      .catch (err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+
+router.post('/', (req, res) => {
+  Student.create({
+    student_name: req.body.student_name
+  }).then (studentTable => res.json(studentTable))
+      .catch (err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
     });
 
-    res.status(200).json(newStudent);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
@@ -34,5 +53,27 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// delete student
+router.delete('/:id', (req, res) => {
+
+  Student.destroy({
+      where: { 
+        id: req.params.id
+      }
+    }).then(studentTable => {
+
+    if (!studentTable) {
+      res.status(404).json({ message: 'No student found with that id!' });
+      return;
+    }
+
+    res.json(studentTable);
+  }).catch (err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+});
+
 
 module.exports = router;

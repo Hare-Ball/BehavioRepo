@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Behavior extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
+  // checkPassword(loginPw) {
+  //   return bcrypt.compareSync(loginPw, this.password);
+  // }
 }
 
 Behavior.init(
@@ -15,10 +15,11 @@ Behavior.init(
       primaryKey: true,
       autoIncrement: true,
     },
+
     behavior: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
 
   },
   {

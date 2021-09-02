@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Teacher extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
+  // checkPassword(loginPw) {
+  //   return bcrypt.compareSync(loginPw, this.password);
+  // }
 }
 
 Teacher.init(
@@ -16,27 +16,27 @@ Teacher.init(
       primaryKey: true,
       autoIncrement: true,
     },
+
     teacherName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+
     grade: {
       type: DataTypes.INTEGER, 
       allowNull: false
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
+
+    email, username: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: [6],
       },
     },
   },

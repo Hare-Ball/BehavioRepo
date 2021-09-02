@@ -21,8 +21,8 @@ router.post('/login', async (req, res) => {
     const teacherData = await Teacher.findOne({ where: { username: req.body.username } });
 
     if (!teacherData) {
-      res
-        .status(500)
+      res.status(500)
+
         .json({ message: 'Incorrect username or password, please try again' });
       return;
     }

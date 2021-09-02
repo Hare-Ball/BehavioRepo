@@ -1,0 +1,11 @@
+id,first_name,last_name,student_grade,behavior_note,date_created,teacher_id,student_behavior_id
+1,Martina,Hodson,9,NULL,NULL,NULL,NULL
+2,Reem,Sparks,10,NULL,NULL,NULL,NULL
+3,Lynden,Parsons,11,NULL,NULL,NULL,NULL
+4,Rayhan,Rodriquez,12,NULL,NULL,NULL,NULL
+5,Priscilla,Lyons,9,NULL,NULL,NULL,NULL
+6,Jane,Knight,10,NULL,NULL,NULL,NULL
+7,Elina,Kelly,11,NULL,NULL,NULL,NULL
+8,Mary,Bravo,12,NULL,NULL,NULL,NULL
+9,Lianne,Carson,9,NULL,NULL,NULL,NULL
+10,Jorden,Cleveland,NULL,NULL,NULL,NULL, NULL

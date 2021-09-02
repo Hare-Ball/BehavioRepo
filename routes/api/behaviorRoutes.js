@@ -1,25 +1,63 @@
 const router = require('express').Router();
-// use object destructuring to import our two models by name
-const { Behavior } = require('../../models');
+const {Behavior} = require('../../models');
+// const withAuth = require('../../utils/auth');
 
-// GET all students
-router.get('/', async (req, res) => {
-
+// get behaviors
+router.get('/', (req, res) => {
+  Behavior.findAll({
+    attributes: ['behavior'], 
+  }).then (behaviorTable => res.json(behaviorTable))
+      .catch (err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
-// GET a single student
-router.get('/:id', async (req, res) => {
-
+// create new behavior
+router.post('/', (req, res) => {
+  Behavior.create({
+    behavior: req.body.behavior
+  }).then (behaviorTable => res.json(behaviorTable))
+      .catch (err =>  {
+        console.log(err);
+    res.status(500).json(err);
+  });
 });
 
-// CREATE a student
-router.post('/', async (req, res) => {
 
+router.put('/:id', (res, req) => {
+  Behavior.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then (behaviorTable => {
+    if (!behaviorTable){
+      res.status(404).json({ message: 'No behavior found with this id!'});
+      return;
+    }
+    res.json(behaviorTable);
+  }).catch (err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
-// DELETE a student
 router.delete('/:id', async (req, res) => {
-
+  Behavior.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(behaviorTable => {
+    if (!behaviorTable) {
+      res.status(404).json({ message: 'No behaviour found with this id!'});
+    return;
+    }
+    res.json(behaviorTable);
+    
+  }).catch (err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;

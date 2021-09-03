@@ -27,7 +27,7 @@ Teacher.init(
       allowNull: false
     },
 
-    email, username: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
       },

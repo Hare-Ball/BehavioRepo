@@ -1,52 +1,42 @@
 [
   {
-    "firstName":"Martina",
-    "lastName":"Hodson",
+    "student_name":"Martina Hodson",
     "studentGrade": 9
   },
   {
-    "firstName":"Reem",
-    "lastName":"Sparks",
+    "student_name":"Reem Sparks",
     "studentGrade": 10
   },
   {
-    "firstName":"Lynden",
-    "lastName":"Parsons",
+    "student_name":"Lynden Parsons",
     "studentGrade": 11
   },
   {
-    "firstName":"Rayhan",
-    "lastName":"Rodriquez",
+    "student_name":"Rayhan Rodriquez",
     "studentGrade": 12
   },
   {
-    "firstName":"Priscilla",
-    "lastName":"Lyons",
+    "student_name":"Priscilla Lyons",
     "studentGrade": 9
   },
   {
-    "firstName":"Jane",
-    "lastName":"Knight",
+    "student_name":"Jane Knight",
     "studentGrade": 10
   },
   {
-    "firstName":"Elina",
-    "lastName":"Kelly",
+    "student_name":"Elina Kelly",
     "studentGrade": 11
   },
   {
-    "firstName":"Mary",
-    "lastName":"Bravo",
+    "student_name":"Mary Bravo",
     "studentGrade": 12
   },
   {
-    "firstName":"Lianne",
-    "lastName":"Carson",
+    "student_name":"Lianne Carson",
     "studentGrade": 9
   },
   {
-    "firstName":"Jorden",
-    "lastName":"Cleveland",
+    "student_name":"Jorden Cleveland",
     "studentGrade": 10
   }
 ]

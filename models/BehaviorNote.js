@@ -33,6 +33,16 @@ BehaviorNote.init(
             },
             allowNull: true
         },
+        
+            student_id: {
+                type: DataTypes.INTEGER, 
+                allowNull: false,
+                references: {
+                    model: 'student',
+                    key: 'id'
+                }
+            }
+
 
         },
         {    

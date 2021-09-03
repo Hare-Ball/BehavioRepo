@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
         include: [{
             model: Student,
             attributes: ['student_name']
-        
         },
     {
         model: Behavior,

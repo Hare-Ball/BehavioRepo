@@ -38,7 +38,7 @@ Student.init(
                 model: 'behaviornote',
                 key: 'id'
             },
-            allowNull: false
+            allowNull: true
         },
     },
     {    

@@ -1,0 +1,17 @@
+[
+
+{
+    "behavior_note": "always talking to students and disrupting their concentration",
+    "date_created": "08/02/2021",
+    "behavior_id": 2,
+    "student_id": 1
+},
+{
+    "behavior_note": "has been late 3 time this week",
+    "date_created": "08/04/2021",
+    "behavior_id": 4,
+    "student_id": 2
+}
+
+
+]

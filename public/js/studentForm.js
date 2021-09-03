@@ -1,8 +1,7 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const firstName = document.querySelector('#firstName').value;
-    const lastName = document.querySelector('#lastName').value;
+    const student_name = document.querySelector('#student_name').value;
     const behavior = document.querySelector('#behavior').value;
     const behavior = document.querySelector('#behaviorNote').value;
     var addButton = document.querySelector('.addButton');

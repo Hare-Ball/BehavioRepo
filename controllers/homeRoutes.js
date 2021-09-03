@@ -6,18 +6,18 @@ const { Student, Teacher } = require('../models');
 // route to show all students
 router.get('/', async (req, res) => {
 
-    const studentData = await Student.findAll({}).catch((err) => { 
+    const studentTable = await Student.findAll({}).catch((err) => { 
         res.json(err);
       });
-      const students = studentData.map((student) => student.get({ plain: true }));
+      const students = studentTable.map((student) => student.get({ plain: true }));
       res.render('homepage', { students });
       });
 
 
 router.get('/teacher/:id', async (req,res)=> {
  try{
-    const teacherData = await Teacher.findByPk(req.params.id);
-    const teacher = teacherData.get({ plain: true });
+    const teacherTable = await Teacher.findByPk(req.params.id);
+    const teacher = teacherTable.get({ plain: true });
 
     res.render('profile', {
   ...teacher,
@@ -30,10 +30,10 @@ router.get('/teacher/:id', async (req,res)=> {
 
 router.get('/student', async (req, res) => {
   try {
-    const studentData = await Student.findAll({}).catch((err) => { 
+    const studentTable = await Student.findAll({}).catch((err) => { 
       res.json(err);
     });
-    const students = studentData.map((student) => student.get({ plain: true }));
+    const students = studentTable.map((student) => student.get({ plain: true }));
       res.render('students', {
       ...students,
       })
@@ -45,8 +45,8 @@ router.get('/student', async (req, res) => {
 
 router.get('/student/:id', async (req, res) => {
     try {
-        const studentData = await Student.findByPk(req.params.id);
-        const student = studentData.get({ plain: true });
+        const studentTable = await Student.findByPk(req.params.id);
+        const student = studentTable.get({ plain: true });
 
         res.render('students', {
         ...student,
@@ -59,11 +59,11 @@ router.get('/student/:id', async (req, res) => {
 router.get('/profile', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const teacherData = await Teacher.findAll({}).catch((err)=> {
+    const teacherTable = await Teacher.findAll({}).catch((err)=> {
 
     });
 
-    const teacher = teacherData.get({ plain: true });
+    const teacher = teacherTable.get({ plain: true });
     console.log(teacher)
     res.render('profile', {
       ...teacher,

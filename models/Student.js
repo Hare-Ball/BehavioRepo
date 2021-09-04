@@ -8,7 +8,6 @@ Student.init({
     student_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
     student_name: {type: DataTypes.STRING, allowNull: false},
     grade: {type: DataTypes.DECIMAL, allowNull: false, isDecimal: true},
-    teacher_id: {type: DataTypes.INTEGER, references: {model: 'Teacher', key: 'teacher_id'}}
 }, {
     sequelize,
     timestamps: false,

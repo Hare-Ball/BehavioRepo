@@ -1,17 +1,33 @@
   
+const sequelize = require('../config/connection');
 const router = require('express').Router();
-const { Student, Teacher } = require('../models');
+const { Student, Teacher, Behavior, BehaviorNote } = require('../models');
 // const withAuth = require('../utils/auth');
 
 // route to show all students
 router.get('/', async (req, res) => {
+  Teacher.findAll({
+    attributes: ['id', 'teacherName', 'grade', 'email'],
+    include: [
+      {
+        model: Student,
+        attributes: ['id','student_name', 'student_grade']
 
-    const studentTable = await Student.findAll({}).catch((err) => { 
-        res.json(err);
-      });
-      const students = studentTable.map((student) => student.get({ plain: true }));
-      res.render('homepage', { students });
-      });
+      }
+    ]
+  }).then (studentTable => {
+    const students = studentTable.map(student => student.get({ plain: true }));
+    res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });   
+
+  });
+
+
+    
 
 
 router.get('/teacher/:id', async (req,res)=> {

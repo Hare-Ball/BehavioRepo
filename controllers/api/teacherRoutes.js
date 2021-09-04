@@ -3,24 +3,18 @@ const router = require('express').Router();
 
 const { Teacher, Student, Behavior } = require('../../models');
 
-// GET all students
+// GET all teachers
 router.get('/', async (req, res) => {
     Teacher.findAll({
-        attributes: ['id', 'teacherName', 'grade'],
-        include: [{
-            model: Student,
-            attributes: ['student_name']
-        },
-    {
-        model: Behavior,
-        attributes: ['behavior']
-    }]
+        attributes: ['teacherName', 'grade'],
+
     }).then (teacherTable => res.json(teacherTable))
-            .catch (err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
+    .catch (err => {
+        console.error(err);
+        res.status(500).json(err);
+    });
 });
+
 
 // GET a single teacher
 router.get('/:id', async (req, res) => {

@@ -39,7 +39,10 @@ router.post('/login', async (req, res) => {
 
             });
 
-            const dbClassroomData = await Teacher.findAll({where:{teacher_id: dbTeacherData.teacher_id},include:Student});
+            const dbClassroomData = await Teacher.findAll({
+                where: {teacher_id: dbTeacherData.teacher_id},
+                include: Student
+            });
             //     where: {
             //         teacher_id: dbTeacherData.teacher_id
             //     },
@@ -49,10 +52,11 @@ router.post('/login', async (req, res) => {
 
 
             const classroom = dbClassroomData.map(element => {
-                element.get({plain: true})
+                return element.get({plain: true});
             });
 
-             console.log("---> homepage :" );
+            console.log("---> homepage :");
+            console.log("---> classroom :" + JSON.stringify(classroom));
             res.render('homepage', {classroom, session: req.session});
         } else {
             res.render('error');
@@ -63,9 +67,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/logout', async (req, res) => {
+router.get('/logout', async (req, res) => {
         try {
             req.session.destroy(async () => {
+                console.log("---> destroy :");
 
                 res.render('homepage', {session: req.session,});
             });

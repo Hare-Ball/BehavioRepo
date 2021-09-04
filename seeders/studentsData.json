@@ -1,42 +1,42 @@
 [
   {
     "student_name":"Martina Hodson",
-    "studentGrade": 9
+    "student_grade": 9
   },
   {
     "student_name":"Reem Sparks",
-    "studentGrade": 10
+    "student_grade": 10
   },
   {
     "student_name":"Lynden Parsons",
-    "studentGrade": 11
+    "student_grade": 11
   },
   {
     "student_name":"Rayhan Rodriquez",
-    "studentGrade": 12
+    "student_grade": 12
   },
   {
     "student_name":"Priscilla Lyons",
-    "studentGrade": 9
+    "student_grade": 9
   },
   {
     "student_name":"Jane Knight",
-    "studentGrade": 10
+    "student_grade": 10
   },
   {
     "student_name":"Elina Kelly",
-    "studentGrade": 11
+    "student_grade": 11
   },
   {
     "student_name":"Mary Bravo",
-    "studentGrade": 12
+    "student_grade": 12
   },
   {
     "student_name":"Lianne Carson",
-    "studentGrade": 9
+    "student_grade": 9
   },
   {
     "student_name":"Jorden Cleveland",
-    "studentGrade": 10
+    "student_grade": 10
   }
 ]

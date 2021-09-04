@@ -1,9 +1,13 @@
 //read json
 const studentsData = require('./studentsData.json');
-const teacherData = require('./teacherData.json')
-const behaviorData = require('./behaviorData.json')
+const teacherData = require('./teacherData.json');
+const behaviorData = require('./behaviorData.json');
+
+const studentbehaviorData = require('./studentbehaviorData.json');
+const studentteacherData = require('./studentteacherData.json');
+
 const sequelize = require('../config/connection');
-const {Student, Teacher, Behavior} = require('../models');
+const {Student, Teacher, Behavior, StudentTeacher, StudentBehavior} = require('../models');
 
 //connect to database
 console.log("studentsTable: " + JSON.stringify(studentsData));
@@ -11,19 +15,23 @@ console.log("studentsTable: " + JSON.stringify(studentsData));
 const seedDatabase = async () => {
 
 // Force sync the   database
-    console.log("---> database: ");
     await sequelize.sync({force: true});
-    console.log("---> sequelize: ");
 
 // create and save objects to database
-    const teacher = await Teacher.bulkCreate(teacherTable);
-    console.log("---> teacher: " + JSON.stringify(teacher));
+    const  students  = await Student.bulkCreate(studentsData);
+     console.log("---> students :" + JSON.stringify (students) );
 
-    const student = await Student.bulkCreate(studentsTable);
-    console.log("---> student: " + JSON.stringify(student));
+    const  teacher  = await Teacher.bulkCreate(teacherData);
+     console.log("---> teacher :" + JSON.stringify (teacher) );
 
-    const behavior = await Behavior.bulkCreate(behaviorTable);
-    console.log("---> behavior: " + JSON.stringify(behavior));
+    const  behavior  = await Behavior.bulkCreate(behaviorData);
+     console.log("---> behavior :" + JSON.stringify (behavior) );
+
+    const  studentbehavior  = await StudentBehavior.bulkCreate(studentbehaviorData);
+     console.log("---> studentbehavior :" + JSON.stringify (studentbehavior) );
+
+    const  studentteacher  = await StudentTeacher.bulkCreate(studentteacherData);
+     console.log("---> studentteacher :" + JSON.stringify (studentteacher) );
 
 
     // Exit the process

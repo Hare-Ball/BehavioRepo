@@ -2,6 +2,8 @@ const router = require('express').Router();
 // use object destructuring to import our two models by name
 
 const { Teacher, Student, Behavior } = require('../../models');
+console.log(__filename);
+
 
 // GET all students
 router.get('/', async (req, res) => {
@@ -48,7 +50,7 @@ router.post('/', async (req, res) => {
 
         teacherName: req.body.teacherName,
         grade: req.body.grade,
-        email: req.body.email
+        //email: req.body.email
     }).then (teacherTable => res.json(teacherTable))
         .catch (err => {
             console.log(err);

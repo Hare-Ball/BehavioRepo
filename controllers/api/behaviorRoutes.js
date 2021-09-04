@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Behavior} = require('../../models');
 // const withAuth = require('../../utils/auth');
+console.log(__filename);
 
 // get behaviors
 router.get('/', (req, res) => {

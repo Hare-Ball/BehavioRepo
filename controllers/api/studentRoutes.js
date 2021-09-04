@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Student} = require('../../models');
 // const withAuth = require('../../utils/auth');
+console.log(__filename);
 
 
 router.get('/',(req, res) => {

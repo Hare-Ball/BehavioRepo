@@ -7,52 +7,17 @@ class Teacher extends Model {
   //   return bcrypt.compareSync(loginPw, this.password);
   // }
 }
+class Product extends Model {}
 
-Teacher.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-
-    teacherName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-    grade: {
-      type: DataTypes.INTEGER, 
-      allowNull: false
-    },
-
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [6],
-      },
-    },
-  },
-  {
-    hooks: {
-      beforeCreate: async (newTeacherData) => {
-        newTeacherData.password = await bcrypt.hash(newTeacherData.password, 10);
-        return newTeacherData;
-      },
-    },
+Teacher.init({
+    teacher_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
+    teacher_name: {type: DataTypes.STRING, allowNull: false},
+}, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'teacher',
-  }
-);
+    modelName: "Teacher",
+});
+module.exports =  Teacher;
 
-module.exports = Teacher;

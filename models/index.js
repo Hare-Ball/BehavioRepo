@@ -1,7 +1,7 @@
 const Student = require('./Student');
 const Teacher = require('./Teacher');
 const Behavior = require('./Behavior');
-const BehaviorNote = require('./BehaviorNote');
+const StudentBehavior = require('./StudentBehavior');
 
 Teacher.hasMany(Student,{
     foreignKey:'teacher_id'
@@ -19,7 +19,7 @@ Behavior.belongsToMany(Student,{
 
 });
 
-BehaviorNote.belongsTo(Student,{
+StudentBehavior.belongsTo(Student,{
     foreignKey: 'behaviornote'
 
 })

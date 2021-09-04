@@ -1,6 +1,5 @@
 const Teacher = require('./Teacher');
 const Student = require('./Student');
-const StudentBehavior = require('./StudentBehavior');
 const Behavior = require('./Behavior');
 
 Student.belongsToMany(Teacher, {
@@ -37,4 +36,4 @@ Behavior.belongsToMany(Student, {
     },
 });
 
-module.exports = {Category, Product, ProductTag, Tag};
+module.exports = {Student, Teacher, Behavior};

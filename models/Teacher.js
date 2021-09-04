@@ -2,12 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Teacher extends Model {
-  // checkPassword(loginPw) {
-  //   return bcrypt.compareSync(loginPw, this.password);
-  // }
-}
-class Product extends Model {}
+class Teacher extends Model {}
 
 Teacher.init({
     teacher_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},

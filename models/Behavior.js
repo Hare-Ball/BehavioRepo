@@ -6,13 +6,13 @@ class Behavior extends Model {
 }
 
 Behavior.init({
-    tag_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
-    tag_name: {type: DataTypes.STRING}
+    behavior_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
+    behavior_name: {type: DataTypes.STRING}
 }, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "Tag",
+    modelName: "Behavior",
 });
 module.exports = Behavior;

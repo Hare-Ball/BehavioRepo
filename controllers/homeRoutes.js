@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const { Student, Teacher } = require('../models');
 // const withAuth = require('../utils/auth');
-console.log(__filename);
+
 
 // route to show all students
 router.get('/', async (req, res) => {
@@ -65,7 +65,7 @@ router.get('/profile', async (req, res) => {
     });
 
     const teacher = teacherTable.get({ plain: true });
-    console.log(teacher)
+    (teacher)
     res.render('profile', {
       ...teacher,
       // logged_in: true
@@ -86,12 +86,12 @@ router.get('/profile', async (req, res) => {
 
 
 router.get('/login', (req, res) => {
-     console.log("---> login :"  );
+
     if (req.session.logged_in) {
       res.redirect('/students');
       return;
     }
-  
+
     res.render('login');
   });
 

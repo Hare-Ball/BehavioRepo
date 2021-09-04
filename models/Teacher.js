@@ -22,7 +22,7 @@ Teacher.init({
             },
         },
         sequelize,
-        modelName: 'User',
+        modelName: 'Teacher',
         freezeTableName: true,
         underscored: true,
         timestamps: true,

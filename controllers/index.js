@@ -1,5 +1,5 @@
 const router = require('express').Router();
-console.log(__filename);
+
 
 const studentRoutes = require('./api/studentRoutes');
 const behaviorRoutes = require('./api/behaviorRoutes');

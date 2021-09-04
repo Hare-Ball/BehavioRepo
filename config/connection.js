@@ -3,7 +3,7 @@ require('dotenv').config();
 
 let sequelize;
 
-     //console.log("---> process.env.JAWSDB_URL :" + process.env.JAWSDB_URL );
+     //("---> process.env.JAWSDB_URL :" + process.env.JAWSDB_URL );
 // if( process.env.JAWSDB_URL ) {
 //    sequelize = new
 //    Sequelize("mysql://ugin4yv4xavz56ac:hz3jnkazmgolad7z@vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jhjr0anlumd45h6u");
@@ -17,7 +17,9 @@ let sequelize;
             host: 'localhost',
             dialect: 'mysql',
             port: 3306,
-            logging: false,
+            logging: true,
+            timestamps: false,
+            force: false,
         }
     );
 // }

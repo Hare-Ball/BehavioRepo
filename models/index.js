@@ -5,35 +5,27 @@ const StudentTeacher = require('./StudentTeacher');
 const Behavior = require('./Behavior');
 
 Student.belongsToMany(Teacher, {
-    foreignKey:'student_id',
-    through: {
-        model: "StudentTeacher",
-        unique: false,
+        through: "StudentTeacher",
+        foreignKey: 'student_id',
     },
-});
+);
 
 Teacher.belongsToMany(Student, {
-    foreignKey:'teacher_id',
-    through: {
-        model: "StudentTeacher",
-        unique: false,
+        through: "StudentTeacher",
+        foreignKey: 'teacher_id',
     },
-});
+);
 
 Student.belongsToMany(Behavior, {
-    foreignKey:'student_id',
-    through: {
-        model: "StudentBehavior",
-        unique: false,
+        through: "StudentBehavior",
+        foreignKey: 'student_id',
     },
-});
+)
 
 Behavior.belongsToMany(Student, {
-    foreignKey:'behavior_id',
-    through: {
-        model: "StudentBehavior",
-        unique: false,
+        through: "StudentBehavior",
+        foreignKey: 'behavior_id',
     },
-});
+);
 
 module.exports = {Student, Teacher, Behavior, StudentBehavior, StudentTeacher};

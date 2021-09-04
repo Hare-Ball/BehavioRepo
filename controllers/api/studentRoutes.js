@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Student} = require('../../models');
 // const withAuth = require('../../utils/auth');
-console.log(__filename);
+
 
 
 router.get('/',(req, res) => {
@@ -18,7 +18,7 @@ router.get('/',(req, res) => {
 
   }).then (studentTable => res.json(studentTable))
       .catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
       });
 });
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
     student_name: req.body.student_name
   }).then (studentTable => res.json(studentTable))
       .catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
       });
     });
@@ -71,7 +71,7 @@ router.delete('/:id', (req, res) => {
 
     res.json(studentTable);
   }).catch (err => {
-      console.log(err);
+      console.error(err.message);
       res.status(500).json(err);
   });
 });

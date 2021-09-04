@@ -10,7 +10,7 @@ const sequelize = require('../config/connection');
 const {Student, Teacher, Behavior, StudentTeacher, StudentBehavior} = require('../models');
 
 //connect to database
-console.log("studentsTable: " + JSON.stringify(studentsData));
+("studentsTable: " + JSON.stringify(studentsData));
 
 const seedDatabase = async () => {
 
@@ -19,19 +19,14 @@ const seedDatabase = async () => {
 
 // create and save objects to database
     const  students  = await Student.bulkCreate(studentsData);
-     console.log("---> students :" + JSON.stringify (students) );
 
     const  teacher  = await Teacher.bulkCreate(teacherData);
-     console.log("---> teacher :" + JSON.stringify (teacher) );
 
     const  behavior  = await Behavior.bulkCreate(behaviorData);
-     console.log("---> behavior :" + JSON.stringify (behavior) );
 
-    const  studentbehavior  = await StudentBehavior.bulkCreate(studentbehaviorData);
-     console.log("---> studentbehavior :" + JSON.stringify (studentbehavior) );
+    //const  studentbehavior  = await StudentBehavior.bulkCreate(studentbehaviorData);
 
-    const  studentteacher  = await StudentTeacher.bulkCreate(studentteacherData);
-     console.log("---> studentteacher :" + JSON.stringify (studentteacher) );
+    //const  studentteacher  = await StudentTeacher.bulkCreate(studentteacherData);
 
 
     // Exit the process

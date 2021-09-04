@@ -4,3 +4,4 @@ node_modules
 .idea
 config/connection.js
 config/config.json
+db/schema.sql

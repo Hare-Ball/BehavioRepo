@@ -2,7 +2,7 @@ const router = require('express').Router();
 // use object destructuring to import our two models by name
 
 const { Teacher, Student, Behavior } = require('../../models');
-console.log(__filename);
+
 
 
 // GET all students
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     }]
     }).then (teacherTable => res.json(teacherTable))
             .catch (err => {
-                console.log(err);
+                console.error(err.message);
                 res.status(500).json(err);
             });
 });
@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
         }
         res.json(teacherTable);
     }).catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
     }); 
 
@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
         //email: req.body.email
     }).then (teacherTable => res.json(teacherTable))
         .catch (err => {
-            console.log(err);
+            console.error(err.message);
             res.status(500).json(err);
         });
     });
@@ -75,7 +75,7 @@ router.delete('/:id', async (req, res) => {
   
       res.json(teacherTable);
     }).catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
     });
   });

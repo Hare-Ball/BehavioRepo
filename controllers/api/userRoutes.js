@@ -1,54 +1,79 @@
 const router = require('express').Router();
-const { Teacher } = require('../../models');
-console.log(__filename);
+const {Teacher, Student} = require('../../models');
+
 
 router.post('/', async (req, res) => {
-  try {
-    const teacherData = await Teacher.create(req.body);
+    try {
+        const teacherData = await Teacher.create(req.body);
 
-    req.session.save(() => {
-      req.session.user_id = teacherData.id;
-      req.session.logged_in = true;
+        req.session.save(() => {
+            req.session.user_id = teacherData.id;
+            req.session.logged_in = true;
 
-      res.status(200).json(teacherData);
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+            res.status(200).json(teacherData);
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 router.post('/login', async (req, res) => {
-  try {
-    const username = req.body.email;
-    const  usernameTrim  = username.trim();
-    console.log("---> usernameTrim :>" +  (usernameTrim) +"<");
+    try {
+        const email = req.body.email;
+        const emailTrim = email.trim();
+        console.log("---> usernameTrim :>" + (emailTrim) + "<");
 
-    const password = req.body.password;
-    const  passwordTrim  = password.trim();
-    console.log("---> passwordTrim :>" + (passwordTrim) +"<");
+        const password = req.body.password;
+        const passwordTrim = password.trim();
+        console.log("---> passwordTrim :>" + (passwordTrim) + "<");
 
-    const dbUserData = await User.findOne({where: {username: usernameTrim}});
+        const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
 
-    if (dbUserData !== null && (await dbUserData.checkPassword(passwordTrim))) {
+        if (dbTeacherData !== null && (true)) {
+//await dbTeacherData.checkPassword(passwordTrim)
+
+            await req.session.save(() => {
+                req.session.logged_in = true;
+                req.session.teacherId = dbTeacherData.teacher_id;
+                req.session.teacherName = dbTeacherData.teacher_name;
+
+            });
+
+            const dbClassroomData = await Teacher.findAll({where:{teacher_id: dbTeacherData.teacher_id},include:Student});
+            //     where: {
+            //         teacher_id: dbTeacherData.teacher_id
+            //     },
+            //     include: [{model: Student}]
+            // });
+            console.log("---> dbStudentData :" + JSON.stringify(dbClassroomData));
 
 
-      await req.session.save(() => {
-        req.session.loggedIn = true;
-        req.session.userId = dbUserData.id;
-        req.session.username = dbUserData.username;
+            const classroom = dbClassroomData.map(element => {
+                element.get({plain: true})
+            });
 
-      });
-      const dbMessagesData = await Message.findAll({where: {user_id: dbUserData.id}});
-      const messages = dbMessagesData.map(messages => messages.get({plain: true}));
-      res.render('dashboard', {
-        messages, session: req.session,
-      },);
-    } else {
-      res.render('error');
+             console.log("---> homepage :" );
+            res.render('homepage', {classroom, session: req.session});
+        } else {
+            res.render('error');
+        }
+
+    } catch (e) {
+        console.error(" ++++ " + __filename + " " + e.message);
     }
-
-  } catch (e) {
-    console.error(" ++++ " + __filename + " " + e.message);
-  }
 });
+
+router.post('/logout', async (req, res) => {
+        try {
+            req.session.destroy(async () => {
+
+                res.render('homepage', {session: req.session,});
+            });
+        } catch (e) {
+
+            console.error(" ++++ " + __filename + " " + e.message);
+        }
+    }
+);
+
 module.exports = router;

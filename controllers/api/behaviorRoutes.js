@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Behavior} = require('../../models');
 // const withAuth = require('../../utils/auth');
-console.log(__filename);
+
 
 // get behaviors
 router.get('/', (req, res) => {
@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     attributes: ['behavior'], 
   }).then (behaviorTable => res.json(behaviorTable))
       .catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
       });
 });
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     behavior: req.body.behavior
   }).then (behaviorTable => res.json(behaviorTable))
       .catch (err =>  {
-        console.log(err);
+        console.error(err.message);
     res.status(500).json(err);
   });
 });
@@ -38,7 +38,7 @@ router.put('/:id', (res, req) => {
     }
     res.json(behaviorTable);
   }).catch (err => {
-    console.log(err);
+    console.error(err.message);
     res.status(500).json(err);
   });
 });
@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res) => {
     res.json(behaviorTable);
     
   }).catch (err => {
-    console.log(err);
+    console.error(err.message);
     res.status(500).json(err);
   });
 });

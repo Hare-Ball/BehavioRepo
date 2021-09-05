@@ -4,7 +4,7 @@
 
 
 {{#each classroom.[0].Students as |student| }}
-{{student.student_name}}<br>
+<a href="/api/student/findBehavior/{{student_id}}">{{student.student_name}}</a><br>
 {{/each}}
 
 

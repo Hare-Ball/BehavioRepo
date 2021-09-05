@@ -1,0 +1,16 @@
+{
+  "student_id": 1,
+  "student_name": "Martina Hodson",
+  "student_grade": 9,
+  "Behaviors": [
+    {
+      "behavior_id": 1,
+      "behavior_name": "No Problems",
+      "StudentBehavior": {
+        "student_id": 1,
+        "behavior_id": 1
+      }
+    }
+  ]
+}
+

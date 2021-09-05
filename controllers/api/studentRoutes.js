@@ -108,23 +108,19 @@ router.post('/saveBehavior', async (req, res) => {
 
 router.get('/showClassroom/:classroom_id', async (req, res) => {
     try {
-        console.log("---> showClassroom :");
-
-        const dbClassroomData = await Classroom.findByPk(req.params.classroom_id, {include: Student});
-//     where: {
-//         teacher_id: dbTeacherData.teacher_id
-//     },
-//     include: [{model: Student}]
-// });
-        console.log("---> dbStudentData :" + JSON.stringify(dbClassroomData));
-
-
+        let classroom_id;
+        await req.session.save(() => {
+            req.session.classroom_id = req.params.classroom_id;
+        });
+        classroom_id = req.params.classroom_id;
+        const  dbClassroomData  = await Classroom.findByPk(classroom_id, {include: Student});
+        await req.session.save(() => {
+            req.session.classroom_name = dbClassroomData.classroom_name;
+            console.log('session ', req.session)
+        });
+         console.log("---> dbClassroomData :" + JSON.stringify (dbClassroomData) );
         const classroom = dbClassroomData.get({plain: true});
-
-        console.log("---> classroom :");
-        console.log("---> zzz classroom :" + JSON.stringify(classroom));
         res.render('classroom', {classroom, session: req.session});
-
 
     } catch
         (e) {

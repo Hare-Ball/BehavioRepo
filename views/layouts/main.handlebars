@@ -7,7 +7,8 @@
     <title>Behavior Managment System</title>
     <link rel="stylesheet" href="/css/jass.css">
     <link rel="stylesheet" href="/css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="/css/datepicker.css" />
+    <script type="text/javascript" src="/js/datepicker.js"></script>
 </head>
 
 <body>
@@ -18,16 +19,13 @@
         </h1>
 
         <nav>
-
-            {{#if logged_in}} --}}
-            <a href="/student">Students</a> |
-            <a href="/logout">Logout</a>  |
+            {{#if session.logged_in}}
+                <a href="/logout">Logout</a> |
+                <a href="/api/user/showDashboard">My Classrooms</a> |
+                {{>my-chosen-classroom}}
             {{else}}
-            <a href="/login">login</a> |
+                <a href="/login">login</a>
             {{/if}}
-            <a href="/login">Home</a> |
-            <a href="/login">Dashbord</a> |
-            <a href="/login">My Classroom</a> |
         </nav>
     </header>
     <main class="container container-fluid mt-5">
@@ -35,7 +33,10 @@
         {{{ body }}}
     </main>
     <footer>
-        <br/><hr/>
+        <br/><br/><br/><br/><br/>
+        {{#if session.teacher_name}} Teacher: {{session.teacher_name}}{{/if}}{{#if session.classroom_name}} > {{session
+    .classroom_name}}{{/if}}<br/>
+        <hr/>
     </footer>
 </div>
 

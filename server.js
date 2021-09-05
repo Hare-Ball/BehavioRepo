@@ -39,23 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-    console.log('HOME ROUTES:');
-    console.log(' ');
-    console.log("http://localhost:%j/", PORT);
-    console.log("http://localhost:%j/teacher/:id", PORT);
-    console.log("http://localhost:%j/student/:id", PORT);
-    console.log("http://localhost:%j/profile", PORT);
-    console.log("http://localhost:%j/login", PORT);
-    console.log('');
-    console.log('');
-    console.log('API ROUTES:');
-    console.log(' ');
-    console.log("http://localhost:%j/api/users/", PORT);
-    console.log("http://localhost:%j/api/users/login", PORT);
-    console.log("http://localhost:%j/api/users/logout", PORT);
-    console.log("http://localhost:%j/api/projects", PORT);
-    console.log("http://localhost:%j/api/students/", PORT);
-    console.log("http://localhost:%j/api/students/:id", PORT);
-    console.log("http://localhost:%j/api/students/:id", PORT);
+  app.listen(PORT, () => console.log('Now listening on PORT %j', PORT));
+
 });

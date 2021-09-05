@@ -17,7 +17,7 @@ let sequelize;
             host: 'localhost',
             dialect: 'mysql',
             port: 3306,
-            logging: true,
+            logging: false,
             timestamps: false,
             force: false,
         }

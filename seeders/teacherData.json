@@ -13,6 +13,16 @@
     "teacher_name": "Broom Hilda",
     "email": "bhilda@myschool.com",
     "password": "aaa"
+  },
+  {
+    "teacher_name": "Tylor Ramirez",
+    "email": "tramirez@myschool.com",
+    "password": "aaa"
+  },
+  {
+    "teacher_name": "Scott Johnson",
+    "email": "sjohnson@myschool.com",
+    "password": "aaa"
   }
 
 ]

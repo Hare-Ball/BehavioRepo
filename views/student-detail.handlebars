@@ -1,8 +1,10 @@
-Name: {{student.student_name}}<br/>
+Student:
+<h1>{{student.student_name}}</h1>
 
 Grade: {{student.student_grade}}<br/>
 <br>
-<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
+<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
+    window.location.reload(); }, 10)">
 
 
 <!--HERE-->
@@ -19,6 +21,4 @@ Grade: {{student.student_grade}}<br/>
 {{#each student.Behaviors}}
     {{> student-behavior}}
 {{/each}}
-
-
 

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Student, Behavior} = require('../../models');
+const {Student, Behavior, Teacher, Classroom} = require('../../models');
 // const withAuth = require('../../utils/auth');
 
 
@@ -75,12 +75,10 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.get('/findBehavior/:student_id', async (req, res) => {
+router.get('/student-detail/:student_id', async (req, res) => {
     console.log("---> req.params.student_id :" + JSON.stringify(req.params.student_id));
 
-    const dbStudentData = await Student.findByPk(req.params.student_id, {
-        include: Behavior,
-    });
+    const dbStudentData = await Student.findByPk(req.params.student_id, {include: Behavior,});
 
     const dbBehaviorData = await Behavior.findAll();
     const behaviors = dbBehaviorData.map(x => x.get({plain: true}));
@@ -89,7 +87,7 @@ router.get('/findBehavior/:student_id', async (req, res) => {
     const student = dbStudentData.get({plain: true});
 
     console.log("---> behaviors :" + JSON.stringify(behaviors));
-    res.render('profile', {student, behaviors, session: req.session});
+    res.render('student-detail', {student, behaviors, session: req.session});
 });
 
 router.post('/saveBehavior', async (req, res) => {
@@ -107,6 +105,35 @@ router.post('/saveBehavior', async (req, res) => {
 
 
 });
+
+router.get('/showClassroom/:classroom_id', async (req, res) => {
+    try {
+        console.log("---> showClassroom :");
+
+        const dbClassroomData = await Classroom.findByPk(req.params.classroom_id, {include: Student});
+//     where: {
+//         teacher_id: dbTeacherData.teacher_id
+//     },
+//     include: [{model: Student}]
+// });
+        console.log("---> dbStudentData :" + JSON.stringify(dbClassroomData));
+
+
+        const classroom = dbClassroomData.get({plain: true});
+
+        console.log("---> classroom :");
+        console.log("---> zzz classroom :" + JSON.stringify(classroom));
+        res.render('classroom', {classroom, session: req.session});
+
+
+    } catch
+        (e) {
+        console.error(" ++++ " + __filename + " " + e.message);
+    }
+})
+;
+
+
 module.exports = router;
 
 //student.setBehaviors([behavior])

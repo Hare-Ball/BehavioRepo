@@ -1,18 +1,17 @@
 const Teacher = require('./Teacher');
 const Student = require('./Student');
-const StudentBehavior = require('./StudentBehavior');
-const StudentTeacher = require('./StudentTeacher');
+const Classroom = require('./Classroom');
 const Behavior = require('./Behavior');
 
-Student.belongsToMany(Teacher, {
-        through: "StudentTeacher",
+Student.belongsToMany(Classroom, {
+        through: "StudentClassroom",
         foreignKey: 'student_id',
     },
 );
 
-Teacher.belongsToMany(Student, {
-        through: "StudentTeacher",
-        foreignKey: 'teacher_id',
+Classroom.belongsToMany(Student, {
+        through: "StudentClassroom",
+        foreignKey: 'classroom_id',
     },
 );
 
@@ -28,4 +27,15 @@ Behavior.belongsToMany(Student, {
     },
 );
 
-module.exports = {Student, Teacher, Behavior, StudentBehavior, StudentTeacher};
+Classroom.belongsToMany(Teacher, {
+        through: "ClassroomTeacher",
+        foreignKey: 'classroom_id',
+    },
+);
+
+Teacher.belongsToMany(Classroom, {
+        through: "ClassroomTeacher",
+        foreignKey: 'teacher_id',
+    },
+);
+module.exports = {Student, Teacher, Behavior, Classroom};

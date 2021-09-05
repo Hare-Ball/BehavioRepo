@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Teacher, Student} = require('../../models');
+const {Teacher, Student, Behavior, Classroom} = require('../../models');
 
 
 router.post('/', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/oldLogin', async (req, res) => {
     try {
         const email = req.body.email;
         const emailTrim = email.trim();
@@ -55,9 +55,58 @@ router.post('/login', async (req, res) => {
                 return element.get({plain: true});
             });
 
-            console.log("---> homepage :");
+            console.log("---> classroom :");
             console.log("---> classroom :" + JSON.stringify(classroom));
             res.render('homepage', {classroom, session: req.session});
+        } else {
+            res.render('error');
+        }
+
+    } catch (e) {
+        console.error(" ++++ " + __filename + " " + e.message);
+    }
+});
+
+router.post('/login', async (req, res) => {
+    try {
+        const email = req.body.email;
+        const emailTrim = email.trim();
+        console.log("---> usernameTrim :>" + (emailTrim) + "<");
+
+        const password = req.body.password;
+        const passwordTrim = password.trim();
+        console.log("---> passwordTrim :>" + (passwordTrim) + "<");
+
+        const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
+
+        if (dbTeacherData !== null && (true)) {
+
+            await req.session.save(() => {
+                req.session.logged_in  = true;
+                 console.log("---> req.session.logged_in :" + (req.session.logged_in) );
+                req.session.teacherId  = dbTeacherData.teacher_id;
+                 console.log("---> req.session.teacherId  :" +  (req.session.teacherId ) );
+                req.session.teacherName  = dbTeacherData.teacher_name;
+                 console.log("---> req.session.teacherName :" + (req.session.teacherName) );
+
+            });
+
+            const  dbClassroomData  = await Teacher.findByPk(dbTeacherData.teacher_id,{include:Classroom});
+             console.log("---> dbClassroomData :" + JSON.stringify (dbClassroomData) );
+            //     where: {
+            //         teacher_id: dbTeacherData.teacher_id
+            //     },
+            //     include: [{model: Student}]
+            // });
+            console.log("---> dbClassroomData :" + JSON.stringify(dbClassroomData));
+
+
+            const classroom = dbClassroomData.get({plain: true});
+
+
+            console.log("---> classroom :");
+            console.log("---> classroom :" + JSON.stringify(classroom));
+            res.render('classroom-list', {classroom, session: req.session});
         } else {
             res.render('error');
         }
@@ -72,7 +121,7 @@ router.get('/logout', async (req, res) => {
             req.session.destroy(async () => {
                 console.log("---> destroy :");
 
-                res.render('homepage', {session: req.session,});
+                res.render('login', {session: req.session,});
             });
         } catch (e) {
 

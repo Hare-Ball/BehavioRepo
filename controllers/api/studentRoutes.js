@@ -83,14 +83,30 @@ router.get('/findBehavior/:student_id', async (req, res) => {
     });
 
     const dbBehaviorData = await Behavior.findAll();
-    const behaviors = dbBehaviorData.map(x=>x.get({plain: true}));
+    const behaviors = dbBehaviorData.map(x => x.get({plain: true}));
 
     // HERE --------------------------------------------------------
     const student = dbStudentData.get({plain: true});
 
-    console.log("---> student :" + JSON.stringify(behaviors));
+    console.log("---> behaviors :" + JSON.stringify(behaviors));
     res.render('profile', {student, behaviors, session: req.session});
 });
 
+router.post('/saveBehavior', async (req, res) => {
+//Student.save({student_id: req.params.student_id,})
 
+    const {student_id, behavior_id} = req.body;
+
+    console.log("---> req.body.student_id :" + student_id);
+    console.log("---> req.body.student_id :" + behavior_id);
+
+    const student = await Student.findByPk(student_id);
+    const behavior = await Behavior.findByPk(behavior_id);
+
+    student.addBehavior(behavior);
+
+
+});
 module.exports = router;
+
+//student.setBehaviors([behavior])

@@ -2,27 +2,23 @@ Name: {{student.student_name}}<br/>
 
 Grade: {{student.student_grade}}<br/>
 <br>
-<form action="">
-    <select name="cars" id="cars">
-        <option value="" disabled selected hidden>select a behavior</option>
-        {{#each behaviors}}
-            {{> behavior-detail}}
-        {{/each}}
+<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
 
+
+<!--HERE-->
+    <select name="behavior_id" id="behavior_id">
+        <option value="" disabled selected hidden>select a behavior</option>
+        {{#each behaviors}}{{> behavior-list}}{{/each}}
     </select>
-    <button>save</button>
+    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
+    <button  onclick="freload()">save1s</button>
     <br/>
     <br/>
+
+<!--    WORKING-->
 {{#each student.Behaviors}}
-    {{> behavior-detail}}
+    {{> student-behavior}}
 {{/each}}
 
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
 
 
-
-
->>>{{behaviors.[0].behavior_name}}<<<

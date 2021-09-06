@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 const {Teacher, Student, Behavior, Classroom} = require('../../models');
 

@@ -5,12 +5,11 @@ const behaviorData = require('./behaviorData.json');
 const classroomData = require('./classroomData.json');
 
 
+
 const sequelize = require('../config/connection');
 const {Student, Teacher, Behavior, Classroom} = require('../models');
 
 //connect to database
-("studentsTable: " + JSON.stringify(studentsData));
-
 const seedDatabase = async () => {
 
 // Force sync the   database
@@ -67,7 +66,7 @@ const seedDatabase = async () => {
     }
 
     // Exit the process
-    //process.exit(0);
+    process.exit(0);
 }
 
 seedDatabase();

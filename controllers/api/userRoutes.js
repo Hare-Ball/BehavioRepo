@@ -75,18 +75,27 @@ router.post('/verifyLogin', async (req, res) => {
         const passwordTrim = password.trim();
 
         const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
+        console.log("---> dbTeacherData :" + JSON.stringify(dbTeacherData));
 
         if (dbTeacherData !== null && (true)) {
 
-            await req.session.save(() => {
-                req.session.logged_in = 'yes';
-                req.session.teacher_id = dbTeacherData.teacher_id;
-                req.session.teacher_name = dbTeacherData.teacher_name;
 
-            });
-                const dbClassroomData = await Teacher.findByPk(dbTeacherData.teacher_id, {include: Classroom});
-                const classroom = dbClassroomData.get({plain: true});
-                res.render('dashboard', {classroom, session: req.session});
+            // await req.session.save(() => {
+            req.session.test = "test";
+            console.log('session ', req.session)
+            // });
+
+            // await req.session.save(() => {
+            req.session.logged_in = 'yes';
+            req.session.teacher_id = dbTeacherData.teacher_id;
+            req.session.teacher_name = dbTeacherData.teacher_name;
+
+            console.log("---> req.session :" + JSON.stringify(req.session));
+            //  });
+            console.log("---> req.session :" + JSON.stringify(req.session));
+            const dbClassroomData = await Teacher.findByPk(dbTeacherData.teacher_id, {include: Classroom});
+            const classroom = dbClassroomData.get({plain: true});
+            res.render('dashboard', {classroom, session: req.session});
         } else {
             res.render('error');
         }

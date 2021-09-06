@@ -25,7 +25,7 @@ Teacher.init({
         modelName: 'Teacher',
         freezeTableName: true,
         underscored: true,
-        timestamps: true,
+        timestamps: false,
     });
 module.exports = Teacher;
 

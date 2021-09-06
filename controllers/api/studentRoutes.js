@@ -78,6 +78,8 @@ router.delete('/:id', (req, res) => {
 router.get('/student-detail/:student_id', async (req, res) => {
     console.log("---> req.params.student_id :" + JSON.stringify(req.params.student_id));
 
+    req.session.student_id = req.params.student_id;
+
     const dbStudentData = await Student.findByPk(req.params.student_id, {include: Behavior,});
 
     const dbBehaviorData = await Behavior.findAll();
@@ -93,15 +95,22 @@ router.get('/student-detail/:student_id', async (req, res) => {
 router.post('/saveBehavior', async (req, res) => {
 //Student.save({student_id: req.params.student_id,})
 
-    const {student_id, behavior_id} = req.body;
+    const {student_id, behavior_id, behavior_note, behavior_date} = req.body;
 
     console.log("---> req.body.student_id :" + student_id);
-    console.log("---> req.body.student_id :" + behavior_id);
+    console.log("---> req.body.behavior_id :" + behavior_id);
+    console.log("---> req.body.behavior_note :" + behavior_note);
+    console.log("---> req.body.behavior_date :" + behavior_date);
 
     const student = await Student.findByPk(student_id);
     const behavior = await Behavior.findByPk(behavior_id);
+    behavior.note = "this is a note";
 
-    student.addBehavior(behavior);
+    const  result  = await student.addBehavior(behavior,{ through: {
+        behavior_note: behavior_note ,
+        behavior_date: behavior_date ,
+    } } );
+     console.log("---> res :" + JSON.stringify (result) );
 
 
 });
@@ -109,16 +118,15 @@ router.post('/saveBehavior', async (req, res) => {
 router.get('/showClassroom/:classroom_id', async (req, res) => {
     try {
         let classroom_id;
-        await req.session.save(() => {
-            req.session.classroom_id = req.params.classroom_id;
-        });
+        // await req.session.save(() => {
+        req.session.classroom_id = req.params.classroom_id;
+        // });
         classroom_id = req.params.classroom_id;
-        const  dbClassroomData  = await Classroom.findByPk(classroom_id, {include: Student});
-        await req.session.save(() => {
-            req.session.classroom_name = dbClassroomData.classroom_name;
-            console.log('session ', req.session)
-        });
-         console.log("---> dbClassroomData :" + JSON.stringify (dbClassroomData) );
+        const dbClassroomData = await Classroom.findByPk(classroom_id, {include: Student});
+        // await req.session.save(() => {
+        req.session.classroom_name = dbClassroomData.classroom_name;
+        console.log('session ', req.session)
+        // });
         const classroom = dbClassroomData.get({plain: true});
         res.render('classroom', {classroom, session: req.session});
 

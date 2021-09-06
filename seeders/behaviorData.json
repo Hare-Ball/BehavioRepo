@@ -1,20 +1,20 @@
 [ 
   {
-    "behavior": "No Problems"
+    "behavior_name": "No Problems"
   },
   {
-    "behavior": "Talking in Class"
+    "behavior_name": "Talking in Class"
   },
   {
-    "behavior": "Excessive Noise"
+    "behavior_name": "Excessive Noise"
   },
   {
-    "behavior": "Late to Class"
+    "behavior_name": "Late to Class"
   },
   {
-    "behavior": "Threatening Behavior"
+    "behavior_name": "Threatening Behavior"
   },
   {
-    "behavior": "Cheating"
+    "behavior_name": "Cheating"
   }
 ]

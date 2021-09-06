@@ -1,30 +1,28 @@
 [
-    {
-    "teacherName": "Lawrence Brown",
-    "username":"LawrenceBrown",
-    "email":"lbrown@school.net",
-    "password": "Password123",
-    "grade": 9
-   },
-   {
-    "teacherName": "Kelda Stoker",
-    "username":"KeldaStoker",
-    "email":"kstoker@school.net",
-    "password": "Password123",
-    "grade": 10
-   },
-   {
-    "teacherName": "Broom Hilda",
-    "username":"BroomHilda",
-    "email":"bhilda@school.net",
-    "password": "Password456",
-    "grade": 11
-   },
-   {
-    "teacherName": "Cruella Deville",
-    "username":"CruellaDeville",
-    "email":"cdeville@school.net",
-    "password": "Password654",
-    "grade": 12
-   }
+  {
+    "teacher_name": "Lawrence Brown",
+    "email": "lbrown@myschool.com",
+    "password": "aaa"
+  },
+  {
+    "teacher_name": "Kelda Stoker",
+    "email": "kstoker@myschool.com",
+    "password": "aaa"
+  },
+  {
+    "teacher_name": "Broom Hilda",
+    "email": "bhilda@myschool.com",
+    "password": "aaa"
+  },
+  {
+    "teacher_name": "Tylor Ramirez",
+    "email": "tramirez@myschool.com",
+    "password": "aaa"
+  },
+  {
+    "teacher_name": "Scott Johnson",
+    "email": "sjohnson@myschool.com",
+    "password": "aaa"
+  }
+
 ]

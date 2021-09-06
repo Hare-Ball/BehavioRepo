@@ -3,12 +3,15 @@ const router = require('express').Router();
 
 const { Teacher, Student, Behavior } = require('../../models');
 
+
 // GET all teachers
+
 router.get('/', async (req, res) => {
     Teacher.findAll({
         attributes: { exclude: ['password'] }
 
     }).then (teacherTable => res.json(teacherTable))
+
     .catch (err => {
         console.error(err);
         res.status(500).json(err);
@@ -44,7 +47,7 @@ router.get('/:id', async (req, res) => {
         }
         res.json(teacherTable);
     }).catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
     }); 
 
@@ -56,6 +59,7 @@ router.post('/', async (req, res) => {
 
         teacherName: req.body.teacherName,
         grade: req.body.grade,
+
         email: req.body.email
     }).then (teacherTable => {
         res.session.save(() => {
@@ -132,7 +136,7 @@ router.delete('/:id', async (req, res) => {
   
       res.json(teacherTable);
     }).catch (err => {
-        console.log(err);
+        console.error(err.message);
         res.status(500).json(err);
     });
   });

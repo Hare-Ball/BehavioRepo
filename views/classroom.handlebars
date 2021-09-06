@@ -1,0 +1,11 @@
+<h4>Students in Classroom</h4><br/>
+Classroom:
+
+<h1>{{classroom.classroom_name}}</h1>
+
+
+{{#each classroom.Students as |student| }}
+<a href="/api/student/student-detail/{{student_id}}">{{student.student_name}}</a><br>
+{{/each}}
+
+

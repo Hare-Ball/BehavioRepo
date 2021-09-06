@@ -2,44 +2,48 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Behavior Managment System</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavior Managment System</title>
+    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/datepicker.css" />
+    <script type="text/javascript" src="/js/datepicker.js"></script>
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
+<div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Behavior Management System</a>
-      </h1>
-    
-     <nav>
-        {{!-- <!-- Conditionally render login or logout links -->
-        {{#if logged_in}} --}}
-        <a href="/student">Students</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{!-- {{else}} --}}
-        <a href="/login">login</a>
-        {{!-- {{/if}} --}}
-      </nav>
-      </header>
+        <h1>
+            <a href="/">Behavior Management System</a>
+        </h1>
+
+        <nav>
+            {{#if session.logged_in}}
+                <a href="/logout">Logout</a> |
+                <a href="/api/user/showDashboard">My Classrooms</a> |
+                {{>my-chosen-classroom}}
+            {{else}}
+                <a href="/login">login</a>
+            {{/if}}
+        </nav>
+    </header>
     <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
+        <!-- Render the sub layout -->
+        {{{ body }}}
     </main>
     <footer>
-      
+        <br/><br/><br/><br/><br/>
+        {{#if session.teacher_name}} Teacher: {{session.teacher_name}}{{/if}}{{#if session.classroom_name}} > {{session
+    .classroom_name}}{{/if}}<br/>
+        <hr/>
     </footer>
-  </div>
+</div>
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+<!-- Render script for logged in users only -->
+{{#if logged_in}}
+    <script src="/js/logout.js"></script>
+{{/if}}
 </body>
 
 </html>

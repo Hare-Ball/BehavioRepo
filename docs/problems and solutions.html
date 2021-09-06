@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+I couldn't make sequelize work with 4 models.
+I cut the studentteacher and studentbehavior models and let sequelize create them by itself.
+
+I decided to do this because Sequelize did not recognize the association. I was using
+StudentTeacher.findAll({where:{teacher_id:1},include{model:Teacher}})
+but Sequelize did not find a relationship between teacher and student.
+
+Next I deleted the studentteacher and studentbehavior models and let Sequelize create the
+tables and the relationships by itself. Success on that.
+
+Used findAll and succeeded, but when included where clause sequelize did not recognize. It was related
+to the problem at the beginning. I solved it by using a Teacher model to initiate the search,
+instead of Student. I was wrong searching Student and limiting by a where clause using a teacher_id
+because Student does not have a teacher_id on it.
+
+I switched Student for Teacher and the search worked. It retrieves the teachers with a
+nest of students.
+
+It looks like it is not possible to search using a bridge table as the search table.
+
+
+</body>
+</html>

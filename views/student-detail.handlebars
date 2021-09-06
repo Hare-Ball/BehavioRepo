@@ -1,0 +1,26 @@
+<h4>Student Detail</h4><br/>
+Student:
+<h1>{{student.student_name}}</h1>
+
+Grade: {{student.student_grade}}<br/>
+<br><br>
+<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
+    window.location.reload(); }, 10)">
+
+
+    <input id='start_dt' size="8" class='datepicker'>&nbsp;
+    <select name="behavior_id" id="behavior_id">
+        <option value="" disabled selected hidden>select a behavior</option>
+        {{#each behaviors}}{{> behavior-list}}{{/each}}
+    </select>
+    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
+    <button>Save Behavior</button>
+</form>
+    <br/>
+    <br/>
+<ul>
+<!--    WORKING-->
+{{#each student.Behaviors}}
+    <li>{{> student-behavior}}</li>
+{{/each}}
+</ul>

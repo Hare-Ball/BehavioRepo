@@ -1,5 +1,6 @@
 const router = require('express').Router();
 // use object destructuring to import our two models by name
+
 const { Teacher, Student, Behavior } = require('../../models');
 
 // GET all teachers
@@ -135,5 +136,6 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json(err);
     });
   });
+
 
 module.exports = router;

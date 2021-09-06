@@ -1,3 +1,4 @@
+
 // const router = require('express').Router();
 // const { Teacher } = require('../../models');
 
@@ -39,6 +40,7 @@
 //     req.session.save(() => {
 //       req.session.user_id = teacherData.id;
 //       req.session.logged_in = true;
+
       
 //       res.json({ user: teacherData, message: 'You are now logged in!' });
 //     });

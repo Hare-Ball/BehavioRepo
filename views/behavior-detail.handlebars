@@ -6,28 +6,29 @@ Grade: {{session.student_grade}}<br/>
 <br><br>
 
 
-    <span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
-    <span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
-    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
-    <br/><br/>
-    <div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
-    <br/>
-    <br/>
+<span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
+<span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
+<input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+<br/><br/>
+<div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
+<br/>
+<br/>
 
 <!--    WORKING-->
 <h4>Actions Taken</h4><br/>
-    <form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
+<form action="/api/student/saveAction" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function
+    () {
     window.location.reload(); }, 1000)">
 
 
-        <input id='action_date' name='action_date' size="8" class='datepicker'>&nbsp;
-        <select name="action_id" id="action_id">
-            <option value="" disabled selected hidden>select an action</option>
-            {{#each actions}}{{> action-list}}{{/each}}
-        </select>
-        <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
-        <br/><br/>
-        <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
-        <br/><br/>
-        <button>Save Action</button>
-    </form>
+    <input id='action_date' name='action_date' size="8" class='datepicker'>&nbsp;
+    <select name="action_id" id="action_id">
+        <option value="" disabled selected hidden>select an action</option>
+        {{#each actions}}{{> action-list}}{{/each}}
+    </select>
+    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+    <br/><br/>
+    <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
+    <br/><br/>
+    <button>Save Action</button>
+</form>

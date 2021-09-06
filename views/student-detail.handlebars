@@ -25,7 +25,10 @@ Grade: AAA<br/>
 <ul>
 <!--    WORKING-->
 <h4>History</h4><br/>
-{{#each student.Behaviors}}
-    <li><a href="/api/behavior/showDetail/{{behavior_id}}">{{behavior_name}}</a></li><br/>
+{{#each studentBehavior }}
+    <li><a href="/api/behavior/showDetail/{{behavior_id}}">
+        {{format_date behavior_date}} - {{behavior_name}}</a></li><br/>
 {{/each}}
 </ul>
+
+<!--{student, studentBehavior, behaviors, session: req.session}-->

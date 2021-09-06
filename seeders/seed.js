@@ -5,7 +5,6 @@ const behaviorData = require('./behaviorData.json');
 const classroomData = require('./classroomData.json');
 
 
-
 const sequelize = require('../config/connection');
 const {Student, Teacher, Behavior, Classroom} = require('../models');
 
@@ -33,16 +32,21 @@ const seedDatabase = async () => {
 
             student = await Student.findByPk(i);
             behavior = await Behavior.findByPk(j);
+            behavior_date = '09/06/2021';
+            behavior_note = 'Very bad behavior.';
 
             let random = Math.floor(Math.random() * 10);
-            console.log("---> random :" + JSON.stringify(random));
             if (random > 5) {
-                student.addBehavior(behavior);
-                console.log('---> added !  - random:' + random)
+                student.addBehavior(behavior, {
+                    through: {
+                        behavior_note: behavior_note,
+                        behavior_date: behavior_date,
+                    }
+                });
             }
         }
-    }
 
+    }
     // STUDENT CLASSROOM
     for (let i = 1; i <= 10; i++) {
 
@@ -50,7 +54,10 @@ const seedDatabase = async () => {
 
             student = await Student.findByPk(i);
             classroom = await Classroom.findByPk(j);
-            student.addClassroom(classroom);
+            let random = Math.floor(Math.random() * 10);
+            if (random > 5) {
+                student.addClassroom(classroom);
+            }
         }
     }
 
@@ -61,12 +68,14 @@ const seedDatabase = async () => {
 
             teacher = await Teacher.findByPk(i);
             classroom = await Classroom.findByPk(j);
-            classroom.addTeacher(teacher);
+            let random = Math.floor(Math.random() * 10);
+            if (random > 5) {
+                classroom.addTeacher(teacher);
+            }
         }
+
+        // Exit the process
+        process.exit(0);
+
     }
-
-    // Exit the process
-    process.exit(0);
-}
-
-seedDatabase();
+    seedDatabase();

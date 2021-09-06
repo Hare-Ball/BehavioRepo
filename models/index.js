@@ -38,8 +38,9 @@ Teacher.belongsToMany(Classroom, {
 
 const StudentBehavior = sequelize.define('StudentBehavior', {
     counter: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
-    student_id: {type: DataTypes.INTEGER, references: {model: 'Student', key: 'student_id', primaryKey: true}},
-    behavior_id: {type: DataTypes.INTEGER, references: {model: 'Behavior', key: 'behavior_id', primaryKey: true}},
+    student_id: {type: DataTypes.INTEGER, primaryKey: true,}, //references: {model: 'Student', key: 'student_id', }},
+    behavior_id: {type: DataTypes.INTEGER, primaryKey: false,}, //references: {model: 'Behavior', key: 'behavior_id',
+        // primaryKey: false}},
     behavior_date: {type: DataTypes.DATE},
     behavior_note: {type: DataTypes.STRING},
 }, {

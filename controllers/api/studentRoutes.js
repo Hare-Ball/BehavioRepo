@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const {Student, Behavior, Teacher, Classroom} = require('../../models');
-// const withAuth = require('../../utils/auth');
+const {Student, Behavior, Teacher, Classroom, StudentBehavior} = require('../../models');
+const sequelize = require('../../config/connection');
+const Sequelize = require('sequelize');
 console.log("++++++ " + __filename)
 
 
@@ -77,23 +78,37 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/student-detail/:student_id', async (req, res) => {
-    console.log("---> req.params.student_id :" + JSON.stringify(req.params.student_id));
-
-
-    const dbStudentData = await Student.findByPk(req.params.student_id, {include: Behavior,});
-    const  student  = dbStudentData.get({plain: true});
-     console.log("---> student :" + JSON.stringify (student) );
-    req.session.student_id = req.params.student_id;
-    req.session.student_name = student.student_name;
-    req.session.student_grade = student.student_grade;
 
     const dbBehaviorData = await Behavior.findAll();
     const behaviors = dbBehaviorData.map(x => x.get({plain: true}));
 
+    const student_id = req.params.student_id;
+    const dbStudentData = await Student.findByPk(student_id);
+    const student = dbStudentData.get({plain: true});
+
+    const dbStudentBehaviorData = await StudentBehavior.findAll({where: {student_id}});
+    const studentBehavior = dbStudentBehaviorData.map(x => x.get({plain: true}));
+
+    studentBehavior.map(objElement => {
+        objElement.behavior_name = function () {
+            return null
+        }
+
+        for (let i = 0; i < behaviors.length; i++) {
+            if (behaviors[i].behavior_id === objElement.behavior_id) {
+                objElement.behavior_name = behaviors[i].behavior_name;
+            }
+        }
+    });
+
+    req.session.student_id = req.params.student_id;
+    req.session.student_name = student.student_name;
+    req.session.student_grade = student.student_grade;
+
+
     // HERE --------------------------------------------------------
 
-    console.log("---> behaviors :" + JSON.stringify(behaviors));
-    res.render('student-detail', {student, behaviors, session: req.session});
+    res.render('student-detail', {student, studentBehavior, behaviors, session: req.session});
 });
 
 router.post('/saveBehavior', async (req, res) => {
@@ -110,11 +125,31 @@ router.post('/saveBehavior', async (req, res) => {
     const behavior = await Behavior.findByPk(behavior_id);
     behavior.note = "this is a note";
 
-    const  result  = await student.addBehavior(behavior,{ through: {
-        behavior_note: behavior_note ,
-        behavior_date: behavior_date ,
-    } } );
-     console.log("---> res :" + JSON.stringify (result) );
+
+    // const  result  = await student.addBehavior(behavior,{ through: {
+    //     behavior_note: behavior_note ,
+    //     behavior_date: behavior_date ,
+    // } } );
+
+    // const result = await student.addBehaviors(behavior, {
+    //     through: {
+    //         behavior_note: behavior_note,
+    //         behavior_date: behavior_date,
+    //     }
+    // });
+    // console.log("---> res :" + JSON.stringify(result));
+
+    let maxCounter = await StudentBehavior.max('counter');
+    console.log("---> maxCount :" + JSON.stringify(maxCounter));
+    maxCounter ++;
+    const resultbulkCreate = await StudentBehavior.bulkCreate([{
+        counter: maxCounter,
+        student_id: student_id,
+        behavior_id: behavior_id,
+        behavior_date: behavior_date,
+        behavior_note: behavior_note
+    }]);
+    console.log("---> resultbulkCreate :" + JSON.stringify(resultbulkCreate));
 
 
 });

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Student, Behavior, Teacher, Classroom} = require('../../models');
 // const withAuth = require('../../utils/auth');
+console.log("++++++ " + __filename)
 
 
 router.get('/', (req, res) => {
@@ -78,15 +79,18 @@ router.delete('/:id', (req, res) => {
 router.get('/student-detail/:student_id', async (req, res) => {
     console.log("---> req.params.student_id :" + JSON.stringify(req.params.student_id));
 
-    req.session.student_id = req.params.student_id;
 
     const dbStudentData = await Student.findByPk(req.params.student_id, {include: Behavior,});
+    const  student  = dbStudentData.get({plain: true});
+     console.log("---> student :" + JSON.stringify (student) );
+    req.session.student_id = req.params.student_id;
+    req.session.student_name = student.student_name;
+    req.session.student_grade = student.student_grade;
 
     const dbBehaviorData = await Behavior.findAll();
     const behaviors = dbBehaviorData.map(x => x.get({plain: true}));
 
     // HERE --------------------------------------------------------
-    const student = dbStudentData.get({plain: true});
 
     console.log("---> behaviors :" + JSON.stringify(behaviors));
     res.render('student-detail', {student, behaviors, session: req.session});

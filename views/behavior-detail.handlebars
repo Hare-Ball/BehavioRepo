@@ -1,30 +1,33 @@
-<h4>Student Detail</h4><br/>
+<h4>Behavior Detail</h4><br/>
 Student:
-<h1>{{student.student_name}}</h1>
+<h1>{{session.student_name}}</h1>
 
-Grade: {{student.student_grade}}<br/>
+Grade: {{session.student_grade}}<br/>
 <br><br>
-<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
+
+
+    <span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
+    <span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
+    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
+    <br/><br/>
+    <div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
+    <br/>
+    <br/>
+
+<!--    WORKING-->
+<h4>Actions Taken</h4><br/>
+    <form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
     window.location.reload(); }, 1000)">
 
 
-    <input id='behavior_date' name='behavior_date' size="8" class='datepicker'>&nbsp;
-    <select name="behavior_id" id="behavior_id">
-        <option value="" disabled selected hidden>select a behavior</option>
-        {{#each behaviors}}{{> behavior-list}}{{/each}}
-    </select>
-    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
-    <br/><br/>
-    <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
-    <br/><br/>
-    <button>Save Behavior</button>
-</form>
-    <br/>
-    <br/>
-<ul>
-<!--    WORKING-->
-<h4>History</h4><br/>
-{{#each student.Behaviors}}
-    <li>{{> student-behavior}}</li>
-{{/each}}
-</ul>
+        <input id='action_date' name='action_date' size="8" class='datepicker'>&nbsp;
+        <select name="action_id" id="action_id">
+            <option value="" disabled selected hidden>select an action</option>
+            {{#each actions}}{{> action-list}}{{/each}}
+        </select>
+        <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
+        <br/><br/>
+        <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
+        <br/><br/>
+        <button>Save Action</button>
+    </form>

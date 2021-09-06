@@ -1,63 +1,63 @@
-const router = require('express').Router();
-const { Teacher } = require('../../models');
 
-router.post('/', async (req, res) => {
-  try {
-    const teacherData = await Teacher.create(req.body);
+// const router = require('express').Router();
+// const { Teacher } = require('../../models');
 
-    req.session.save(() => {
-      req.session.user_id = teacherData.id;
-      req.session.logged_in = true;
+// router.post('/', async (req, res) => {
+//   try {
+//     const teacherData = await Teacher.create(req.body);
 
-      res.status(200).json(teacherData);
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     req.session.save(() => {
+//       req.session.user_id = teacherData.id;
+//       req.session.logged_in = true;
 
-router.post('/login', async (req, res) => {
-  try {
-    const teacherData = await Teacher.findOne({ where: { username: req.body.email } });
+//       res.status(200).json(teacherData);
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-    if (!teacherData) {
+// router.post('/login', async (req, res) => {
+//   try {
+//     const teacherData = await Teacher.findOne({ where: { username: req.body.email } });
 
-      res
-        .status(500)
+//     if (!teacherData) {
+//       res
+//         .status(500)
+//         .json({ message: 'Incorrect username or password, please try again' });
+//       return;
+//     }
 
-        .json({ message: 'Incorrect username or password, please try again' });
-      return;
-    }
+//     const validPassword = await teacherData.checkPassword(req.body.password);
 
-    const validPassword = await teacherData.checkPassword(req.body.password);
+//     if (!validPassword) {
+//       res
+//         .status(500)
+//         .json({ message: 'Incorrect email or password, please try again' });
+//       return;
+//     }
 
-    if (!validPassword) {
-      res
-        .status(500)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
+//     req.session.save(() => {
+//       req.session.user_id = teacherData.id;
+//       req.session.logged_in = true;
 
-    req.session.save(() => {
-      req.session.user_id = teacherData.id;
-      req.session.logged_in = true;
       
-      res.json({ user: teacherData, message: 'You are now logged in!' });
-    });
+//       res.json({ user: teacherData, message: 'You are now logged in!' });
+//     });
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+// router.post('/logout', (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
-module.exports = router;
+// module.exports = router;

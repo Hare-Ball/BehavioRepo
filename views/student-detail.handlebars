@@ -9,7 +9,7 @@ Grade: AAA<br/>
     window.location.reload(); }, 1000)">
 
 
-    <input id='behavior_date' name='behavior_date' size="8" class='datepicker'>&nbsp;
+    <input id='behavior_date' name='behavior_date' size="8" class='datepicker' value="{{print_today student.student_id}}">&nbsp;
     <select name="behavior_id" id="behavior_id">
         <option value="" disabled selected hidden>select a behavior</option>
         {{#each behaviors}}{{> behavior-list}}{{/each}}
@@ -31,4 +31,3 @@ Grade: AAA<br/>
 {{/each}}
 </ul>
 
-<!--{student, studentBehavior, behaviors, session: req.session}-->

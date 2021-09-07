@@ -69,4 +69,29 @@ Behavior.belongsToMany(Student, {
     },
 );
 
-module.exports = {Student, Teacher, Behavior, Classroom, StudentBehavior};
+
+const Action = sequelize.define('Action', {
+    action_id: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
+    action_name: {type: DataTypes.STRING},
+}, {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "Action",
+});
+
+const Consequence = sequelize.define('Consequence', {
+    counter: {type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: false},
+    action_date: {type: DataTypes.DATE},
+    action_name: {type: DataTypes.STRING},
+    action_note: {type: DataTypes.STRING},
+}, {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "Consequence",
+});
+
+module.exports = {Action, Student, Teacher, Behavior, Classroom, StudentBehavior, Consequence};

@@ -12,6 +12,12 @@ router.get('/login', async (req, res) => {
 });
 
 
+// route to show login
+router.get('/Admin', async (req, res) => {
+    res.render('admin');
+});
+
+
 router.get('/logout', async (req, res) => {
         try {
             req.session.destroy(async () => {

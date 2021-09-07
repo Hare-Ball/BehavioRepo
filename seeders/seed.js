@@ -35,20 +35,23 @@ const seedDatabase = async () => {
 
             student = await Student.findByPk(i);
             behavior = await Behavior.findByPk(j);
-            behavior_date = helpers.print_today('today');
 
             let random = Math.floor(Math.random() * 10);
             if (random > 2) {
                 behavior_note = 'Talk with the student today. Showing better behavior.';
+                behavior_date = '31-Aug-2021';//helpers.print_today('today');
             }
             if (random > 4) {
                 behavior_note = 'Very bad behavior. Does not even try.';
+                behavior_date = '2-Sep-2021';//helpers.print_today('today');
             }
             if (random > 6) {
                 behavior_note = 'I am planning a parent conference.';
+                behavior_date = '3-Sep-2021';//helpers.print_today('today');
             }
             if (random > 8) {
                 behavior_note = 'I am confident this student will comply.';
+                behavior_date = '6-Sep-2021';//helpers.print_today('today');
             }
             if (random > 5) {
                 student.addBehavior(behavior, {

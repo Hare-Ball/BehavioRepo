@@ -26,7 +26,7 @@ Grade: AAA<br/>
 <!--    WORKING-->
 <h4>History</h4><br/>
 {{#each studentBehavior }}
-    <li><a href="/api/behavior/showDetail/{{behavior_id}}">
+    <li><a href="/api/behavior/showDetail/{{behavior_id}}.{{counter}}">
         {{format_date behavior_date}} - {{behavior_name}}</a></li><br/>
 {{/each}}
 </ul>

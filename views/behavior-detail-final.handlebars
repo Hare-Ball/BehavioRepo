@@ -1,0 +1,37 @@
+<h4>Behavior Detail</h4><br/>
+Student:
+<h1>{{session.student_name}}</h1>
+
+Grade: {{session.student_grade}}<br/>
+<br><br>
+
+
+<span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
+<span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
+<input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+<br/><br/>
+<div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
+<br/>
+<br/>
+
+<!--    WORKING-->
+<h4>Actions Taken</h4><br/>
+
+
+
+    <span>{{format_date consequence.action_date}}</span>&nbsp;
+    <span>{{consequence.action_name}}</span>&nbsp;
+
+    <br/><br/>
+    <div class="note">{{consequence.action_note}}</div>
+    <br/><br/>
+    <button onclick="window.location.href='/api/user/showDashboard'">Back to Classroom</button>
+
+
+<script>
+    const frmEl = document.getElementById('frmAction');
+    frmEl.action_note.diddsabled = true;
+    frmEl.action_date.disdabled = true;
+
+
+</script>

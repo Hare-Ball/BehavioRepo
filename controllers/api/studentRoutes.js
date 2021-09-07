@@ -5,24 +5,6 @@ const Sequelize = require('sequelize');
 console.log("++++++ " + __filename)
 
 
-router.get('/', (req, res) => {
-    Student.findAll({
-        attributes: ['student_name', 'student_grade', 'teacher_id'],
-        include: [{
-            model: Behavior,
-            attributes: ['behavior']
-        },
-            {
-                model: BehaviorNote,
-                attributes: ['behavior_note']
-            }]
-
-    }).then(studentTable => res.json(studentTable))
-        .catch(err => {
-            console.error(err.message);
-            res.status(500).json(err);
-        });
-});
 
 
 router.post('/', (req, res) => {
@@ -78,6 +60,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/student-detail/:student_id', async (req, res) => {
+    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" + __filename + '\n+++++++++++ /student-detail/:student_id\'');
 
     const dbBehaviorData = await Behavior.findAll();
     const behaviors = dbBehaviorData.map(x => x.get({plain: true}));
@@ -86,8 +69,9 @@ router.get('/student-detail/:student_id', async (req, res) => {
     const dbStudentData = await Student.findByPk(student_id);
     const student = dbStudentData.get({plain: true});
 
-    const dbStudentBehaviorData = await StudentBehavior.findAll({where: {student_id}});
-    const studentBehavior = dbStudentBehaviorData.map(x => x.get({plain: true}));
+    const dbStudentBehaviorData = await StudentBehavior.findAll({where: {student_id}, order: [['behavior_Date', 'DESC'],],});
+    const  studentBehavior  = dbStudentBehaviorData.map(x => x.get({plain: true}));
+     console.log("---> studentBehavior :" + JSON.stringify (studentBehavior) );
 
     studentBehavior.map(objElement => {
         objElement.behavior_name = function () {
@@ -112,6 +96,8 @@ router.get('/student-detail/:student_id', async (req, res) => {
 });
 
 router.post('/saveBehavior', async (req, res) => {
+    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" + __filename + '\n+++++++++++ /saveBehavior');
+
 //Student.save({student_id: req.params.student_id,})
 
     const {student_id, behavior_id, behavior_note, behavior_date} = req.body;

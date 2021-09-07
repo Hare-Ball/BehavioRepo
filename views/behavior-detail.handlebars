@@ -16,7 +16,7 @@ Grade: {{session.student_grade}}<br/>
 
 <!--    WORKING-->
 <h4>Actions Taken</h4><br/>
-<form action="/api/behavior/saveAction" method="POST" id="frmBehavior" onsubmit="sendForm(e);">
+<form action="/api/behavior/saveAction" method="POST" id="frmAction" onsubmit="sendForm(e);">
 
 
     <input id='action_date' name='action_date' size="8" class='datepicker' value="{{print_today student.student_id}}">&nbsp;
@@ -24,13 +24,25 @@ Grade: {{session.student_grade}}<br/>
         <option value="" disabled selected hidden>select an action</option>
         {{#each actions}}{{> action-list}}{{/each}}
     </select>
-    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+    <input type="hidden" name="student_id"
+           id="student_id" value="{{studentBehavior.[0].student_id}}"/>
+    <input type="hidden"
+           name="behavior_id" id="behavior_id"
+           value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_id}}"/>
     <input type="hidden"
            name="counter"
            id="counter"
            value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.counter}}"/>
     <br/><br/>
-    <textarea name="action_note" id="action_note" rows="3" cols="35"></textarea>
+    <textarea name="action_note" id="action_note" rows="3" cols="35">{{consequences.action_note}}</textarea>
     <br/><br/>
     <button onclick="window.history=-1;">Back to History</button>&nbsp;<button>Save Action</button>
 </form>
+
+<script>
+    const frmEl = document.getElementById('frmAction');
+    frmEl.action_note.diddsabled = true;
+    frmEl.action_date.disdabled = true;
+
+
+</script>

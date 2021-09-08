@@ -1,37 +1,45 @@
 <h4>Student Detail</h4><br/>
 Student:
 <h1>{{student.student_name}}</h1>
-<h1>{{session.student_id}}</h1>
-
-Grade: AAA<br/>
+Grade: {{session.student_grade}}<br/>
 <br><br>
-<form action="/api/student/saveBehavior"
-      method="POST" id="frmBehavior"
-      name="frmBehavior" onsubmit="sendFormBehavior();">
+
+<div class="behavior-container">
+
+    <div class="item-behavior">
+        <h5>Behavior</h5><br/>
+        <form action="/api/student/saveBehavior"
+              method="POST" id="frmBehavior"
+              name="frmBehavior" onsubmit="sendFormBehavior();">
 
 
-    <input id='behavior_date' name='behavior_date' size="8" class='datepicker' value="{{print_today student.student_id}}">&nbsp;
-    <select name="behavior_id" id="behavior_id">
-        <option value="" disabled selected hidden>select a behavior</option>
-        {{#each behaviors}}{{> behavior-list}}{{/each}}
-    </select>
-    <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}" />
-    <br/><br/>
-    <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
-    <br/><br/>
-    <button>Save Behavior</button>
-</form>
-    <br/>
-    <br/>
-<ul>
-<!--    WORKING-->
-<h4>History</h4><br/>
-{{#each studentBehavior }}
-    <li><a href="/api/behavior/showDetail/{{behavior_id}}.{{counter}}">
-        {{format_date behavior_date}} - {{behavior_name}}</a></li><br/>
-{{/each}}
-</ul>
-
+            <input id='behavior_date' name='behavior_date' size="8" class='datepicker'
+                   value="{{print_today student.student_id}}">&nbsp;
+            <select name="behavior_id" id="behavior_id">
+                <option value="" disabled selected hidden>select a behavior</option>
+                {{#each behaviors}}{{> behavior-list}}{{/each}}
+            </select>
+            <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+            <br/><br/>
+            <textarea name="behavior_note" id="behavior_note" rows="3" cols="35"></textarea>
+            <br/><br/>
+            <button class="css-button-sharp--sand">Save Behavior</button>
+        </form>
+        <br/>
+        <br/>
+    </div>
+    <div class="item-behavior">
+        <!--    WORKING-->
+        <h4>History</h4><br/>
+        <ul class="item-history">
+        {{#each studentBehavior }}
+            <li><a href="/api/behavior/showDetail/{{behavior_id}}.{{counter}}">
+                {{format_date behavior_date}} - {{behavior_name}}</a></li>
+            <br/>
+        {{/each}}
+        </ul>
+    </div>
+</div>
 
 <script>
     const frmEl = document.getElementById('frmBehavior');

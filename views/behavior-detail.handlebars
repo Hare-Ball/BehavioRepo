@@ -6,42 +6,55 @@ Grade: {{session.student_grade}}<br/>
 <br><br>
 
 
-<span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
-<span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
-<input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
-<br/><br/>
-<div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
-<br/>
-<br/>
+<div class="behavior-container">
 
-<!--    WORKING-->
-<h4>Actions Taken</h4><br/>
-<form action="/api/behavior/saveAction" method="POST" id="frmAction" name="frmAction" onsubmit="sendFormAction(evnt);">
+    <div class="item-behavior">
+        <h5>Behavior</h5><br/>
+        <span><input
+                type="text"
+                size="8"
+                disabled="true"
+                value="{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}"></span>&nbsp;
+        <span class="behavior-description">{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
+        <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+        <br/><br/>
+        <div class="note-behavior">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
+        <br/>
+        <br/>
+    </div>
+    <div class="item-behavior">
+        <!--    WORKING-->
+        <h5>Actions Taken</h5><br/>
+        <form action="/api/behavior/saveAction" method="POST" id="frmAction" name="frmAction"
+              onsubmit="sendFormAction();">
 
 
-    <input id='action_date' name='action_date' size="8" class='datepicker' value="{{print_today student.student_id}}">&nbsp;
-    <select name="action_id" id="action_id">
-        <option value="" disabled selected hidden>select an action</option>
-        {{#each actions}}{{> action-list}}{{/each}}
-    </select>
-    <input type="hidden" name="student_id"
-           id="student_id" value="{{studentBehavior.[0].student_id}}"/>
-    <input type="hidden"
-           name="behavior_id" id="behavior_id"
-           value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_id}}"/>
-    <input type="hidden"
-           name="counter"
-           id="counter"
-           value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.counter}}"/>
-    <br/><br/>
-    <textarea name="action_note" id="action_note" rows="3" cols="35">{{consequences.action_note}}</textarea>
-    <br/><br/>
-    <button onclick="window.history=-1;">Back to History</button>&nbsp;<button>Save Action</button>
-</form>
-
+            <input id='action_date' name='action_date' size="8" class='datepicker'
+                   value="{{print_today student.student_id}}">&nbsp;
+            <select name="action_id" id="action_id">
+                <option value="" disabled selected hidden>select an action</option>
+                {{#each actions}}{{> action-list}}{{/each}}
+            </select>
+            <input type="hidden" name="student_id"
+                   id="student_id" value="{{studentBehavior.[0].student_id}}"/>
+            <input type="hidden"
+                   name="behavior_id" id="behavior_id"
+                   value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_id}}"/>
+            <input type="hidden"
+                   name="counter"
+                   id="counter"
+                   value="{{studentBehavior.[0].Behaviors.[0].StudentBehavior.counter}}"/>
+            <br/><br/>
+            <textarea name="action_note" id="action_note" rows="3" cols="35">{{consequences.action_note}}</textarea>
+            <br/><br/>
+            <button class="css-button-sharp--sand" onclick="window.history=-1;">Back to History</button>&nbsp;
+            <button class="css-button-sharp--sand">Save Action</button>
+        </form>
+    </div>
+</div>
 
 <script>
-    const frmEl = document.getElementById('frmAction');
-     frmEl.action_date.disabled = true;
+     const frmEl = document.getElementById('frmAction');
+    frmEl.action_date.disabled = true;
 
 </script>

@@ -49,20 +49,25 @@ router.get('/showDetail/:behavior_idcounter', async (req, res) => {
 
 
     let consequences;
+    let actions;
+
     if (dbConsequencesDATA) {
         //DATA EXIST
         console.log("---> !== null :");
-        consequences = dbConsequencesDATA.get({plain: true});
+        consequence  = dbConsequencesDATA.get({plain: true});
+         console.log("---> consequences :" + JSON.stringify (consequence) );
+        actions = {};
+        res.render('behavior-detail-final', {studentBehavior, actions, consequence, session: req.session});
     } else {
         //EMPTY DATA
-        consequences = {counter: 0, action_date: "", action_name: "", action_note: ""}
+        consequence = {counter: 0, action_date: "", action_name: "", action_note: ""}
         console.log("--->  null :");
+        const dbActionsDATA = await Action.findAll();
+        actions = dbActionsDATA.map(x => x.get({plain: true}));
+        res.render('behavior-detail', {studentBehavior, actions, consequence, session: req.session});
     }
 
-    const dbActionsDATA = await Action.findAll();
-    const actions = dbActionsDATA.map(x => x.get({plain: true}));
 
-    res.render('behavior-detail', {studentBehavior, actions, consequences, session: req.session});
 });
 
 
@@ -110,7 +115,7 @@ router.post('/saveAction', async (req, res) => {
 
     }
 
-        consequence = consequence.get({plain: true});
+    consequence = consequence.get({plain: true});
     console.log("---> studentBehavior :" + JSON.stringify(studentBehavior));
     console.log("---> consequence :" + JSON.stringify(consequence));
 

@@ -5,25 +5,41 @@ Student:
 Grade: {{session.student_grade}}<br/>
 <br><br>
 
+<div class="behavior-container">
 
-<span>{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}</span>&nbsp;
-<span>{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
-<input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
-<br/><br/>
-<div class="note">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
-<br/>
-<br/>
+    <div class="item-behavior">
+        <h5>Behavior</h5><br/>
+        <span><input
+                type="text"
+                size="8"
+                disabled="true"
+                value="{{format_date studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_date}}"></span>&nbsp;
+        <span class="behavior-description">{{studentBehavior.[0].Behaviors.[0].behavior_name}}</span>
+        <input type="hidden" name="student_id" id="student_id" value="{{student.student_id}}"/>
+        <br/><br/>
+        <div class="note-behavior">{{studentBehavior.[0].Behaviors.[0].StudentBehavior.behavior_note}}</div>
+        <br/>
+        <br/>
+    </div>
+    <div class="item-behavior">
+        <!--    WORKING-->
+        <h5>Actions Taken</h5><br/>
 
-<!--    WORKING-->
-<h4>Actions Taken</h4><br/>
 
+        <span><input
+                type="text"
+                size="8"
+                disabled="true"
+                value="{{format_date consequence.action_date}}"></span>&nbsp;
+        <span class="behavior-description">{{consequence.action_name}}</span>&nbsp;
 
-
-    <span>{{format_date consequence.action_date}}</span>&nbsp;
-    <span>{{consequence.action_name}}</span>&nbsp;
-
-    <br/><br/>
-    <div class="note">{{consequence.action_note}}</div>
-    <br/><br/>
-    <button onclick="window.location.href='/api/user/showDashboard'">Back to Classroom</button>
-
+        <br/><br/>
+        <div class="note-behavior">{{consequence.action_note}}</div>
+        <br/>
+        <button class="css-button-sharp--sand"
+                onclick="window.location.href='/api/user/showDashboard'">
+            Back to Classroom
+        </button>
+        <br/><br/>
+    </div>
+</div>

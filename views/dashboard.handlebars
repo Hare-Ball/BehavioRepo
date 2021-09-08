@@ -5,6 +5,8 @@ email: {{classroom.email }}<br/>
 <br/><br/>
 <h6>Your list of classrooms:</h6><br/>
 <ul>
+
+
 {{#each classroom.Classrooms }}
     <li><a href="/api/student/showClassroom/{{classroom_id}}">{{classroom_name}}</a></li><br/>
 {{/each}}

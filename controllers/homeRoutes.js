@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const {Behavior, Student, Action, StudentBehavior, Consequence} = require('../models');
+
+
 
 
 // route to show login
@@ -14,7 +17,13 @@ router.get('/login', async (req, res) => {
 
 // route to show login
 router.get('/Admin', async (req, res) => {
-    res.render('admin');
+
+    const dbStudentDATA = await Student.findAll({include:{model:Behavior}});
+    const  student  = dbStudentDATA.map(x=>x.get({plain: true}));
+     console.log("---> student :" + JSON.stringify (student) );
+
+
+    res.render('admin', {student, session: req.session});
 });
 
 

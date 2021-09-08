@@ -5,8 +5,9 @@ Student:
 
 Grade: AAA<br/>
 <br><br>
-<form action="/api/student/saveBehavior" method="POST" id="frmBehavior" onsubmit="this.focus();setTimeout(function () {
-    window.location.reload(); }, 1000)">
+<form action="/api/student/saveBehavior"
+      method="POST" id="frmBehavior"
+      name="frmBehavior" onsubmit="sendFormBehavior();">
 
 
     <input id='behavior_date' name='behavior_date' size="8" class='datepicker' value="{{print_today student.student_id}}">&nbsp;
@@ -31,3 +32,9 @@ Grade: AAA<br/>
 {{/each}}
 </ul>
 
+
+<script>
+    const frmEl = document.getElementById('frmBehavior');
+    frmEl.behavior_date.disabled = true;
+
+</script>

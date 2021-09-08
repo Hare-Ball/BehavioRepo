@@ -1,14 +1,21 @@
-<h4>My Classrooms</h4><br/>
+<h4>List of Student's Behaviors</h4><br/>
 Teacher:
-<h1>{{classroom.teacher_name }}</h1>
-email: {{classroom.email }}<br/>
+<h1>{{session.teacher_name }}</h1>
+email: {{session.email }}<br/>
 <br/><br/>
-<h6>Your list of classrooms:</h6><br/>
-<ul>
-{{#each classroom.Classrooms }}
-    <li><a href="/api/student/showClassroom/{{classroom_id}}">{{classroom_name}}</a></li><br/>
+<h6>Students in your roster:</h6><br/>
+<div class="studentContainer">
+{{#each student }}
+    <div class="item">
+        <div class="student-card-title">50487{{student_id}} {{student_name}} {{student_grade}}</div>
+    {{#each Behaviors }}
+        <span class="student-card-behavior">
+        <span class="student-card-date">{{format_date StudentBehavior.behavior_date}}</span> - {{behavior_name}}<br/>
+        <div class="behavior-note">{{StudentBehavior.behavior_note}}</div>
+        </span>
+    {{/each}}
+    </div>
 {{/each}}
-</ul>
-
+</div>
 
 

@@ -89,6 +89,7 @@ router.post('/verifyLogin', async (req, res) => {
             req.session.logged_in = 'yes';
             req.session.teacher_id = dbTeacherData.teacher_id;
             req.session.teacher_name = dbTeacherData.teacher_name;
+            req.session.email = emailTrim;
 
             console.log("---> req.session :" + JSON.stringify(req.session));
             //  });

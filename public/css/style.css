@@ -3,3 +3,99 @@
     width: 250px;
     height: 100px;
 }
+
+.table-cell{
+    border: 1px solid red;
+    flex:1;
+}
+
+
+.actixons{
+    White-space : pre;
+}
+
+.studentContainer{
+    display: flex;
+    border: 1px solid gray;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+
+.student-card-title{
+    padding:10px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #DDD;
+    border-radius: 5px 5px 0px 0px;
+}
+
+
+.item{
+    width: 50vh;
+    height-min: 15vh;
+    margin: 15px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+
+.behavior-note{
+    White-space : pre;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-size: 75%;
+}
+
+.student-card-date{
+    font-weight:bold;
+    font-size: 75%;
+    margin-left: 15px;
+}
+
+.student-card-behavior{
+
+}
+
+.vred{
+    border: 1px solid red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

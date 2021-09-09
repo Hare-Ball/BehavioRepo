@@ -1,7 +1,9 @@
-<h4>List of Student's Behaviors</h4><br/>
-Teacher:
+<div class="gradient-box">
+    <h4>Report of Student's Behaviors</h4><br/>
+<span class="teacher-label">Teacher:</span>
 <h1>{{session.teacher_name }}</h1>
-email: {{session.email }}<br/>
+<span class="email-label">email: {{session.email }}</span><br/>
+</div>
 <br/><br/>
 <h6>Students in your roster:</h6><br/>
 <div class="studentContainer">
@@ -16,6 +18,4 @@ email: {{session.email }}<br/>
     {{/each}}
     </div>
 {{/each}}
-</div>
-
-
+ </div>

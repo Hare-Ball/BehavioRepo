@@ -1,11 +1,17 @@
-<h4>Students in Classroom</h4><br/>
-Classroom:
+<div class="gradient-box">
+    <h4>Students in Classroom</h4><br/>
+<span class="classroom-label">Classroom:</span>
 
 <h1>{{classroom.classroom_name}}</h1>
-
+</div>
+<br/>
+<br/>
+<div class="student-container">
 
 {{#each classroom.Students as |student| }}
+    <div class="item-student">
 <a href="/api/student/student-detail/{{student_id}}">{{student.student_name}}</a><br>
+    </div>
 {{/each}}
-
+</div>
 

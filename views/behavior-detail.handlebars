@@ -1,11 +1,13 @@
+
+<div class="gradient-box">
 <h4>Behavior Detail</h4><br/>
-Student:
+<span class="student-label">Student:</span>
 <h1>{{session.student_name}}</h1>
 
-Grade: {{session.student_grade}}<br/>
+<span class="student-label">Grade: {{session.student_grade}}</span><br/>
+
+</div>
 <br><br>
-
-
 <div class="behavior-container">
 
     <div class="item-behavior">
@@ -32,7 +34,7 @@ Grade: {{session.student_grade}}<br/>
             <input id='action_date' name='action_date' size="8" class='datepicker'
                    value="{{print_today student.student_id}}">&nbsp;
             <select name="action_id" id="action_id">
-                <option value="" disabled selected hidden>select an action</option>
+                <option value="" disabled selected hidden>select</option>
                 {{#each actions}}{{> action-list}}{{/each}}
             </select>
             <input type="hidden" name="student_id"

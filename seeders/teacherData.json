@@ -23,6 +23,11 @@
     "teacher_name": "Scott Johnson",
     "email": "sjohnson@myschool.com",
     "password": "aaa"
+  },
+  {
+    "teacher_name": "Gianni Fontanot",
+    "email": "giannifontanot@gmail.com",
+    "password": "aaa"
   }
 
 ]

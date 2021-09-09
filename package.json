@@ -19,8 +19,10 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "find-config": "^1.0.0",
+    "google-sign-in": "^3.0.3",
     "jquery-cascading-dropdown": "^1.2.9",
     "mysql2": "^2.3.0",
+    "node-google-login": "^1.0.1",
     "sequelize": "^6.6.5"
   },
   "devDependencies": {

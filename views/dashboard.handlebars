@@ -1,16 +1,19 @@
-<h4>My Classrooms</h4><br/>
-Teacher:
-<h1>{{classroom.teacher_name }}</h1>
-email: {{classroom.email }}<br/>
+<div class="gradient-box">
+    <h4>My Classrooms</h4><br/>
+<span class="teacher-label">Teacher:</span>
+<h1>{{session.teacher_name }}</h1>
+<span class="email-label">email: {{session.email }}</span><br/>
+</div>
 <br/><br/>
 <h6>Your list of classrooms:</h6><br/>
-<ul>
 
 
+<div class="classroom-container">
 {{#each classroom.Classrooms }}
-    <li><a href="/api/student/showClassroom/{{classroom_id}}">{{classroom_name}}</a></li><br/>
+    <div class="item-classroom"><a href="/api/student/showClassroom/{{classroom_id}}">{{classroom_name}}</a>
+    </div>
 {{/each}}
-</ul>
+</div>
 
 
 

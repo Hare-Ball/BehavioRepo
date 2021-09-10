@@ -128,21 +128,21 @@ router.get('/showDashboard', async (req, res) => {
 router.get('/verifyLoginGoogle/:param', async (req, res) => {
     try {
 
-        const param = req.params.param.toString().split(".");
-        const email = param[1];
-        const emailTrim = email.trim();
+        const  param  = req.params.param.toString().split("|");
+        const  email  = param[1];
+        const  emailTrim  = email.trim();
 
 
         const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
-        console.log("---> dbTeacherData :" + JSON.stringify(dbTeacherData));
 
         if (dbTeacherData !== null && (true)) {
 
 
-            req.session.logged_in = 'yes';
+            req.session.logged_in = 'Y';
             req.session.teacher_id = dbTeacherData.teacher_id;
             req.session.teacher_name = dbTeacherData.teacher_name;
             req.session.email = emailTrim;
+            req.session.google = 'Y';
 
             console.log("---> req.session :" + JSON.stringify(req.session));
             //  });

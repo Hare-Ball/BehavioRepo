@@ -28,10 +28,17 @@ const seedDatabase = async () => {
     let classroom;
     let teacher;
 
-    //STUDENT BEHAVIOR
-    for (let i = 1; i <= 10; i++) {
 
-        for (let j = 1; j <= 5; j++) {
+    const teacherDataObjsize = Object.keys(teacherData).length;
+    const studentsDataObjsize = Object.keys(studentsData).length;
+    const behaviorDataObjsize = Object.keys(behaviorData).length;
+    const classroomDataObjsize = Object.keys(classroomData).length;
+    const actionDataObjsize = Object.keys(actionData).length;
+
+    //STUDENT BEHAVIOR
+    for (let i = 1; i <= studentsDataObjsize; i++) {
+
+        for (let j = 1; j <= behaviorDataObjsize; j++) {
 
             student = await Student.findByPk(i);
             behavior = await Behavior.findByPk(j);
@@ -65,9 +72,9 @@ const seedDatabase = async () => {
 
     }
     // STUDENT CLASSROOM
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= studentsDataObjsize; i++) {
 
-        for (let j = 1; j <= 6; j++) {
+        for (let j = 1; j <= classroomDataObjsize; j++) {
 
             student = await Student.findByPk(i);
             classroom = await Classroom.findByPk(j);
@@ -79,9 +86,9 @@ const seedDatabase = async () => {
     }
 
     // CLASSROOM TEACHER
-    for (let i = 1; i <= 5; i++) {
 
-        for (let j = 1; j <= 6; j++) {
+    for (let i = 1; i <= teacherDataObjsize; i++) {
+        for (let j = 1; j <= classroomDataObjsize; j++) {
 
             teacher = await Teacher.findByPk(i);
             classroom = await Classroom.findByPk(j);

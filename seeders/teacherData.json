@@ -2,32 +2,46 @@
   {
     "teacher_name": "Lawrence Brown",
     "email": "lbrown@myschool.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   },
   {
     "teacher_name": "Kelda Stoker",
     "email": "kstoker@myschool.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   },
   {
     "teacher_name": "Broom Hilda",
     "email": "bhilda@myschool.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   },
   {
     "teacher_name": "Tylor Ramirez",
     "email": "tramirez@myschool.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   },
   {
     "teacher_name": "Scott Johnson",
     "email": "sjohnson@myschool.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   },
   {
     "teacher_name": "Gianni Fontanot",
     "email": "giannifontanot@gmail.com",
-    "password": "aaa"
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
+  },
+  {
+    "teacher_name": "Robby Hare",
+    "email": "robby.hare@gmail.com",
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
+  },
+  {
+    "teacher_name": "Tommy Kang",
+    "email": "tom.k.500587@gmail.com",
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
+  },
+  {
+    "teacher_name": "Brian O'Connor",
+    "email": "boconnor20@gmail.com",
+    "password": "$2b$10$IWbmT81Prw29S590X2Kjx.ro.q1n8MDKaiHVi1abBdT3TgNT9nunO"
   }
-
 ]

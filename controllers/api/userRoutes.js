@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {createPassword} = require('../../utils/helpers')
+const password = require('../../utils/password')
 const {Teacher, Student, Behavior, Classroom} = require('../../models');
 
 
@@ -74,12 +74,19 @@ router.post('/verifyLogin', async (req, res) => {
         const emailTrim = email.trim();
         const password = req.body.password;
         const passwordTrim = password.trim();
+        console.log("---> passwordTrim :" + JSON.stringify(passwordTrim));
 
         const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
         console.log("---> dbTeacherData :" + JSON.stringify(dbTeacherData));
 
-        if (dbTeacherData !== null && (true)) {
 
+        const validPassword = await dbTeacherData.checkPassword(req.body.password);
+        console.log("---> validPassword :" + JSON.stringify(validPassword));
+
+
+        if (dbTeacherData !== null && (validPassword)) {
+            console.log(" ---------------  GOT IN  -------------------------")
+            console.log("---> dbTeacherData.password :" + JSON.stringify(dbTeacherData.password));
 
             // await req.session.save(() => {
             req.session.test = "test";
@@ -126,28 +133,29 @@ router.get('/showDashboard', async (req, res) => {
 });
 
 router.get('/verifyLoginGoogle/:param', async (req, res) => {
-     console.log("---> verifyLoginGoogle :" );
+    console.log("---> verifyLoginGoogle :");
     try {
 
-        const  param  = req.params.param.toString().split("|");
-        const  tname  = param[0];
-        const  email  = param[1];
-        const  emailTrim  = email.trim();
+        const param = req.params.param.toString().split("|");
+        const tname = param[0];
+        const email = param[1];
+        const emailTrim = email.trim();
         let dbTeacherData;
 
         dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
-        if(dbTeacherData === null){
+        if (dbTeacherData === null) {
+            const teacherPassword = password.create();
 
+            console.log("---> teacherPassword :" + JSON.stringify(teacherPassword));
 
-        console.log("---> createPassword :" + JSON.stringify (createPassword) );
-        const  newTeacher  = await Teacher.create({teacher_name:tname, email:email,  password:"123" });
-        console.log("---> newTeacher :" + JSON.stringify (newTeacher) );
+            const newTeacher = await Teacher.create({teacher_name: tname, email: email, password: teacherPassword});
+            console.log("---> newTeacher :" + JSON.stringify(newTeacher));
         }
 
 
-
         dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
-
+        const passwrd = dbTeacherData.password;
+        console.log("---> found dbTeacherData.password :" + JSON.stringify(passwrd));
         if (dbTeacherData !== null && (true)) {
 
             req.session.teacher_id = dbTeacherData.teacher_id;
@@ -162,7 +170,6 @@ router.get('/verifyLoginGoogle/:param', async (req, res) => {
         } else {
 
 
-
         }
 
     } catch (e) {
@@ -170,5 +177,28 @@ router.get('/verifyLoginGoogle/:param', async (req, res) => {
     }
 });
 
+router.post('/newUser', async (req, res) => {
+    console.log("---> newUser :");
+    try {
+
+        console.log("---> req.body.params :" + JSON.stringify(req.body));
+        let {teacher_name, email, password} = req.body;
+
+        const newTeacher = await Teacher.create({teacher_name, email, password});
+        console.log("---> newTeacher :" + JSON.stringify(newTeacher));
+
+
+        const teacher_id = req.session.teacher_id;
+        teacher_name = req.session.teacher_name;
+
+        const dbClassroomData = await Teacher.findByPk(teacher_id, {include: Classroom});
+        const classroom = dbClassroomData.get({plain: true});
+        res.render('dashboard', {classroom, session: req.session});
+
+
+    } catch (e) {
+        console.error(" ++++ " + __filename + " " + e.message);
+    }
+});
 
 module.exports = router;

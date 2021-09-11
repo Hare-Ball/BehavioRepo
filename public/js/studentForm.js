@@ -8,20 +8,20 @@ async function newFormHandler(event) {
 
     
 
-      if (firstName && lastName && behavior && behaviorNote) {
-        const response = await fetch (`/api/students`, {
-          method: 'POST',
-          body: JSON.stringify({ firstName, lastName, behavior, behaviorNote }),
-          headers: { 'Content-Type': 'application/json'},
-        }),
+  //     if (firstName && lastName && behavior && behaviorNote) {
+  //       const response = await fetch (`/api/students`, {
+  //         method: 'POST',
+  //         body: JSON.stringify({ firstName, lastName, behavior, behaviorNote }),
+  //         headers: { 'Content-Type': 'application/json'},
+  //       }),
         
-        if (response.ok) {
-          document.location.replace('/studentForm');
-        } else {
-          alert('Failed to add.');
-        }
-     }  
-  };
+  //       if (response.ok) {
+  //         document.location.replace('/studentForm');
+  //       } else {
+  //         alert('Failed to add.');
+  //       }
+  //    }  
+  // };
 
 
 document
@@ -31,17 +31,17 @@ document
 
 
 
-//     const response = await fetch(`/api/behavior`, {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         title,
-//         content
-//       }),
-//       headers: {
-//         'Behavior Content-Type': 'application/json'
-//       }
-//     });
+    const response = await fetch(`/api/behavior`, {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        content
+      }),
+      headers: {
+        'Behavior Content-Type': 'application/json'
+      }
+    });
   
-//   };
+  };
   
-// document.querySelector('#new-behavior-form').addEventListener('submit', newFormHandler);
+document.querySelector('#new-behavior-form').addEventListener('submit', newFormHandler);

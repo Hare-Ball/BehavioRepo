@@ -4,33 +4,42 @@ const router = require('express').Router();
 const { Teacher, Student, Behavior } = require('../../models');
 
 
+// GET all teachers
 
-// GET all students
 router.get('/', async (req, res) => {
     Teacher.findAll({
-        attributes: ['id', 'teacherName', 'grade'],
-        include: [{
-            model: Student,
-            attributes: ['student_name']
-        },
-    {
-        model: Behavior,
-        attributes: ['behavior']
-    }]
+        attributes: { exclude: ['password'] }
+
     }).then (teacherTable => res.json(teacherTable))
-            .catch (err => {
-                console.error(err.message);
-                res.status(500).json(err);
-            });
+
+    .catch (err => {
+        console.error(err);
+        res.status(500).json(err);
+    });
 });
+
 
 // GET a single teacher
 router.get('/:id', async (req, res) => {
     Teacher.findOne({
+        attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         },
-        attributes: ['teacherName', 'grade']
+        include: [
+        {
+            model: Student,
+            attributes: ['id', 'student_name', 'student_grade']
+        },
+        {
+            model: Behavior,
+            attributes: ['id', 'behavior']
+        },
+        {
+            model: BehaviorNote,
+            attributes: ['id', 'behavior_note', 'date_created']
+        }
+    ]
     }).then (teacherTable => {
         if (!teacherTable) {
             res.status(404).json({ message: 'No teacher found with this id! '});
@@ -50,19 +59,71 @@ router.post('/', async (req, res) => {
 
         teacherName: req.body.teacherName,
         grade: req.body.grade,
-        //email: req.body.email
-    }).then (teacherTable => res.json(teacherTable))
-        .catch (err => {
-            console.error(err.message);
-            res.status(500).json(err);
+
+        email: req.body.email
+    }).then (teacherTable => {
+        res.session.save(() => {
+        req.session.teacher_id = teacherTable.id;
+        req.session.username = teacherTable.username;
+        req.session.loggedIn = true;
+
+        res.json(teacherTable);
+
         });
     });
+});
+
+// teacher login
+router.post('/login', (req, res) => {
+    Teacher.findOne({ 
+        where: {
+            email: req.body.email
+        }
+        }).then (teacherTable => {
+            if (!teacherTable) {
+                res.status(500).json({ message: 'Teacher please check your email' });
+                return;
+            }
+
+            const checkPW = teacherTable.checkPassword(req.body.password);
+                if (!checkPW) {
+                    res.status(500).json({ message: 'Teacher please reenter password'});
+                    return;
+
+                }
+
+                req.session.save(() => {
+                    req.session.user_id = teacherTable.id;
+                    req.session.username = teacherTable.username;
+                    req.session.loggedIn = true;
+
+                    res.json({ user: teacherTable, message: 'Logged in'});
+                });
+        
+        });
+        });
+
+
+// teacher logout
+router.logout('/:id', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            console.log('logged out');
+            res.status(205).end();
+        
+        });
+
+    } else {
+        res.status(404).end();
+
+    }
+});
 
     
 // DELETE a teacher
 router.delete('/:id', async (req, res) => {
     // delete one product by its `id` value
-    Product.destroy({
+    Teacher.destroy({
         where: { 
           id: req.params.id
         }

@@ -1,5 +1,5 @@
 body{
-    background-color:#DDD;
+
 }
 
 textarea {
@@ -261,11 +261,11 @@ footer {
 }
 
 .menu-admin{
- border-top: 2px solid red;
+ border-top: 0px solid crimson;
 }
 
 .admin-label{
-    color:red;
+    color:crimson;
 }
 
 .container-teacher {
@@ -283,10 +283,17 @@ footer {
     width: 45%;
 
 }
+
+.teacher-display-box{
+
+    border: 1px solid black;
+}
+
 @media only screen and (max-width: 440px) {
     .item-teacher {
 
         width: 80%;
+
     }
 }
 .teacher-list{
@@ -299,13 +306,33 @@ white-space: pre
         margin-bottom: 20px;
     }
 }
-.teacher-display{
-    border: 1px solid black;
+.front-image-display{
+    border: 1px solid lightgray;
 }
 
+.front-image{
+    width: 55vh;
+}
 
+.item-picture {
+    text-align: center;
+    margin:5px;
+    width: 45%;
+}
 
+.google-sign-item{
+    text-align:right;
+    display:flex;
+    justify-content: flex-end;
+}
 
+.googlebox{
+    width: 150px;
+}
 
+.item-login {
+    text-align: left;
+    margin:5px;
+    width: 49%;
 
-
+}

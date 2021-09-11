@@ -166,6 +166,7 @@ router.get('/verifyLoginGoogle/:param', async (req, res) => {
 
             req.session.teacher_id = dbTeacherData.teacher_id;
             req.session.teacher_name = dbTeacherData.teacher_name;
+            req.session.admin = dbTeacherData.admin;
             req.session.email = emailTrim;
             req.session.google = 'Y';
 

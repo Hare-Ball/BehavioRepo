@@ -9,6 +9,10 @@ module.exports = {
         let date = new Date();
         return formatDate(date);
     },
+    createPassword: () => {
+        // return generatePassword();
+        return "1324";
+    },
 
 
 };
@@ -33,11 +37,12 @@ function formatDate(date) {
     month[9] = "Oct";
     month[10] = "Nov";
     month[11] = "Dec";
-    let  n  = month[monthx];
+    let n = month[monthx];
 
     return [day, n, year].join('-');
 }
-  
+
+
 
 
 

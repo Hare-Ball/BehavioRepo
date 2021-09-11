@@ -41,43 +41,20 @@ router.get('/logout', async (req, res) => {
 );
 
 
-router.get('/loginGoogle', async (req, res) => {
+
+router.get('/logoutGoogle', async (req, res) => {
         try {
+            req.session.destroy(async () => {
 
-
-            const config = {
-                clientID:"CLIENT_ID",
-                clientSecret: "CLIENT_SECRET",
-                redirectURL: "REDIRECT_URL",
-                defaultScope: [
-                    'https://www.googleapis.com/auth/userinfo.email',
-                    'https://www.googleapis.com/auth/userinfo.profile',
-                ]
-            }
-
-            const googleLogin = new NodeGoogleLogin(config);
-
-// Generate Auth URL
-            const authURL = googleLogin.generateAuthUrl()
-            console.log(authURL);
-
-// Get User Profiles and Access Tokens by passing the Auth code recieved from generateAuthUrl().
-// Access token & refresh token are passed along with the response object
-            googleLogin.getUserProfile("AUTH_CODE").then(userProfile => {
-                console.log("userProfile", userProfile);
-            }).catch(error => {
-                console.log(error);
-            })
-
-
-
-
+                res.render('login');
+            });
         } catch (e) {
 
             console.error(" ++++ " + __filename + " " + e.message);
         }
     }
 );
+
 module.exports = router;
 
 

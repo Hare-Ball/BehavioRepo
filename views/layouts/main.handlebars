@@ -30,8 +30,12 @@
                         <a href="/logout">Logout</a> |
                         <a href="/api/user/showDashboard">My Classrooms</a>
                         {{>my-chosen-classroom}}
-                    {{else}}
-<!--                        <a href="/login">login</a>-->
+                    {{/if}}
+                    {{#if session.google}}
+                        <a href="/admin">Report</a> |
+                        <a href="" onclick="signOut();">Logout</a> |
+                        <a href="/api/user/showDashboard">My Classrooms</a>
+                        {{>my-chosen-classroom}}
                     {{/if}}
                 </nav>
             </div>
@@ -47,11 +51,6 @@
         {{#if session.teacher_name}} Teacher: {{session.teacher_name}} {{/if}}{{#if session.classroom_name}} > {{session.classroom_name}}{{/if}}<br/>
     </footer>
 </div>
-
-<!-- Render script for logged in users only -->
-{{#if logged_in}}
-    <script src="/js/logout.js"></script>
-{{/if}}
 </body>
  <script>
 
@@ -66,18 +65,11 @@
         window.location.href="/api/user/verifyLoginGoogle/"+profile.getName()+"|"+profile.getEmail();
     }
 
-    function alertUno(){
-
-        alert('Uno');
-    }
-
- </script>
-<button onclick="signOut()">click</button><a href="javascript:signOut()">alertUno</a>
-<script>
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            window.location.href = "/logoutGoogle";
         });
     }
 
@@ -87,7 +79,7 @@
         });
     }
 </script>
-<a href="#" onclick="signOut();">Sign out</a>
+
 
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 

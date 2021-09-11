@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {createPassword} = require('../../utils/helpers')
 const {Teacher, Student, Behavior, Classroom} = require('../../models');
 
 
@@ -111,7 +112,6 @@ router.get('/showDashboard', async (req, res) => {
     try {
 
 
-        const logged_in = req.session.logged_in;
         const teacher_id = req.session.teacher_id;
         const teacher_name = req.session.teacher_name;
 
@@ -126,32 +126,43 @@ router.get('/showDashboard', async (req, res) => {
 });
 
 router.get('/verifyLoginGoogle/:param', async (req, res) => {
+     console.log("---> verifyLoginGoogle :" );
     try {
 
         const  param  = req.params.param.toString().split("|");
+        const  tname  = param[0];
         const  email  = param[1];
         const  emailTrim  = email.trim();
+        let dbTeacherData;
+
+        dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
+        if(dbTeacherData === null){
 
 
-        const dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
+        console.log("---> createPassword :" + JSON.stringify (createPassword) );
+        const  newTeacher  = await Teacher.create({teacher_name:tname, email:email,  password:"123" });
+        console.log("---> newTeacher :" + JSON.stringify (newTeacher) );
+        }
+
+
+
+        dbTeacherData = await Teacher.findOne({where: {email: emailTrim}});
 
         if (dbTeacherData !== null && (true)) {
 
-
-            req.session.logged_in = 'Y';
             req.session.teacher_id = dbTeacherData.teacher_id;
             req.session.teacher_name = dbTeacherData.teacher_name;
             req.session.email = emailTrim;
             req.session.google = 'Y';
 
             console.log("---> req.session :" + JSON.stringify(req.session));
-            //  });
-            console.log("---> req.session :" + JSON.stringify(req.session));
             const dbClassroomData = await Teacher.findByPk(dbTeacherData.teacher_id, {include: Classroom});
             const classroom = dbClassroomData.get({plain: true});
             res.render('dashboard', {classroom, session: req.session});
         } else {
-            res.render('error');
+
+
+
         }
 
     } catch (e) {

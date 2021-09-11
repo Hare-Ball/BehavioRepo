@@ -245,9 +245,63 @@ footer {
     padding: 5px;
 }
 
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+}
 
+.item-nav {
+    text-align: center;
+    margin:5px;
 
+}
 
+.menu-admin{
+ border-top: 2px solid red;
+}
+
+.admin-label{
+    color:red;
+}
+
+.container-teacher {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+}
+
+.item-teacher {
+    text-align: left;
+    margin:5px;
+    width: 45%;
+
+}
+@media only screen and (max-width: 440px) {
+    .item-teacher {
+
+        width: 80%;
+    }
+}
+.teacher-list{
+white-space: pre
+}
+@media only screen and (max-width: 440px) {
+    .teacher-list {
+
+        white-space: normal;
+        margin-bottom: 20px;
+    }
+}
+.teacher-display{
+    border: 1px solid black;
+}
 
 
 

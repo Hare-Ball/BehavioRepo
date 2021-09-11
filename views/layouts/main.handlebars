@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="347069498822-mjh360jnp0nlurjtitb51ck7rtipa5hg.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+          content="347069498822-mjh360jnp0nlurjtitb51ck7rtipa5hg.apps.googleusercontent.com">
     <title>Behavior Managment System</title>
     <link rel="stylesheet" href="/css/jass.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -25,18 +26,33 @@
             <div class="container-item">
 
                 <nav>
-                    {{#if session.logged_in}}
-                        <a href="/admin">Report</a> |
-                        <a href="/logout">Logout</a> |
-                        <a href="/api/user/showDashboard">My Classrooms</a>
-                        {{>my-chosen-classroom}}
-                    {{/if}}
-                    {{#if session.google}}
-                        <a href="/admin">Report</a> |
-                        <a href="" onclick="signOut();">Logout</a> |
-                        <a href="/api/user/showDashboard">My Classrooms</a>
-                        {{>my-chosen-classroom}}
-                    {{/if}}
+                    <div class="container-nav">
+                        <div class="item-nav">
+                            <strong>
+                            {{#if session.logged_in}}
+                                <a href="/logout">Logout</a> |
+                                <a href="/api/user/showDashboard">My Classrooms</a>
+                                {{>my-chosen-classroom}}
+                            {{/if}}
+                            {{#if session.google}}
+                                <a href="" onclick="signOut();">Logout</a>&nbsp;|&nbsp;
+                                <a href="/api/user/showDashboard">My Classrooms</a>
+                                {{>my-chosen-classroom}}
+                            {{/if}}
+                            </strong>
+                        </div>
+                        {{#if session.admin}}
+
+                            <div class="container-nav menu-admin">
+                                <strong> <span class="admin-label">ADMINISTRATION</span> > <a href="/admin"
+                                                                                      class="admin-label">Reports</a>
+                                    &nbsp;|&nbsp;
+                                <a href="/api/user/newTeacher" class="admin-label">New Teacher</a>&nbsp;|&nbsp;
+                                <a href="/api/user/newStudent" class="admin-label">New Student</a>
+                               </strong>
+                            </div>
+                        {{/if}}
+                    </div>
                 </nav>
             </div>
 
@@ -48,11 +64,12 @@
     </main>
     <footer>
         <hr/>
-        {{#if session.teacher_name}} Teacher: {{session.teacher_name}} {{/if}}{{#if session.classroom_name}} > {{session.classroom_name}}{{/if}}<br/>
+        {{#if session.teacher_name}} Teacher: {{session.teacher_name}} {{/if}}{{#if session.classroom_name}}
+        > {{session.classroom_name}}{{/if}}<br/>
     </footer>
 </div>
 </body>
- <script>
+<script>
 
 
     function onSignIn(googleUser) {
@@ -62,7 +79,7 @@
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-        window.location.href="/api/user/verifyLoginGoogle/"+profile.getName()+"|"+profile.getEmail();
+        window.location.href = "/api/user/verifyLoginGoogle/" + profile.getName() + "|" + profile.getEmail();
     }
 
     function signOut() {
@@ -74,7 +91,7 @@
     }
 
     function onLoad() {
-        gapi.load('auth2', function() {
+        gapi.load('auth2', function () {
             gapi.auth2.init();
         });
     }

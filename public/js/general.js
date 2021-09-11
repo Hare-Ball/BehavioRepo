@@ -13,3 +13,16 @@ function sendFormAction(){
     setTimeout(function () {
         window.location.reload(); }, 1000)
 }
+
+
+function sendFormNewTeacher(){
+
+    setTimeout(function () {
+        window.location.reload(); }, 1000)
+}
+
+function sendFormNewStudent(){
+
+    setTimeout(function () {
+        window.location.reload(); }, 1000)
+}

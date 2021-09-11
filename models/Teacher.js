@@ -13,6 +13,7 @@ Teacher.init({
         teacher_name: {type: DataTypes.STRING, allowNull: false},
         email: {type: DataTypes.STRING, allowNull: false},
         password: {type: DataTypes.STRING, allowNull: false},
+        admin: {type: DataTypes.BOOLEAN, allowNull: false},
     },
     {
         hooks: {
@@ -25,7 +26,7 @@ Teacher.init({
         modelName: 'Teacher',
         freezeTableName: true,
         underscored: true,
-        timestamps: false,
+        timestamps: true,
     });
 module.exports = Teacher;
 

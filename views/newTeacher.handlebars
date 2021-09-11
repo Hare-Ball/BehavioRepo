@@ -1,7 +1,41 @@
 <h1>New Teacher</h1>
+<div class="container-teacher ">
+    <div class="item-teacher ">
+        <form class="form signup-form" action="/api/user/SaveNewTeacher" method="post" onsubmit="sendFormNewTeacher();">
+            <div class="form-group">
+                <label for="name-signup">name:</label>
+                <input class="form-input" type="text" id="teacher_name" name="teacher_name" value=""/>
+            </div>
+            <div class="form-group">
+                <label for="email-signup">email:</label>
+                <input class="form-input" type="text" id="email" name="email" value=""/>
+            </div>
+            <div class="form-group">
+                <label for="password-signup">password:</label>
+                <input class="form-input" type="password" id="password" name="password" value=""/>
+            </div>
 
-<form action="/teacher/login">
-    <input type="text"  id="teacher_name" class="" placeholder="">
-    <input type="text"  id="teacher_email" class="" placeholder="">
-    <button>Submit</button>
-</form>
+            <div class="form-group">
+                <label for="password-signup">Administrator:</label>
+                <select name="admin" id="admin">
+                    <option value="" disabled selected hidden>&nbsp;&nbsp;select if teacher is an administrator&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                    </option>
+                    <option value="true">yes</option>
+                    <option value="false">no</option>
+                </select>
+            </div>
+            <div class="form-group"><br>
+                <button class="css-button-sharp--sand " type="submit">save</button>
+            </div>
+        </form>
+    </div>
+    <div class="item-teacher teacher-display ">
+        {{#each teachers}}
+            <div class="teacher-list">
+                <strong>Name:</strong> {{teacher_name}}  <strong>email: </strong>{{email}}
+                <strong>Administrator:</strong> {{admin}}
+            </div>
+        {{/each}}
+    </div>
+</div>

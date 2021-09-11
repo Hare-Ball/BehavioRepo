@@ -97,6 +97,7 @@ router.post('/verifyLogin', async (req, res) => {
             req.session.logged_in = 'yes';
             req.session.teacher_id = dbTeacherData.teacher_id;
             req.session.teacher_name = dbTeacherData.teacher_name;
+            req.session.admin = dbTeacherData.admin;
             req.session.email = emailTrim;
 
             console.log("---> req.session :" + JSON.stringify(req.session));
@@ -148,7 +149,12 @@ router.get('/verifyLoginGoogle/:param', async (req, res) => {
 
             console.log("---> teacherPassword :" + JSON.stringify(teacherPassword));
 
-            const newTeacher = await Teacher.create({teacher_name: tname, email: email, password: teacherPassword});
+            const newTeacher = await Teacher.create({
+                teacher_name: tname,
+                email: email,
+                password: teacherPassword,
+                admin: false
+            });
             console.log("---> newTeacher :" + JSON.stringify(newTeacher));
         }
 
@@ -177,14 +183,14 @@ router.get('/verifyLoginGoogle/:param', async (req, res) => {
     }
 });
 
-router.post('/newUser', async (req, res) => {
+router.post('/saveNewTeacher', async (req, res) => {
     console.log("---> newUser :");
     try {
 
         console.log("---> req.body.params :" + JSON.stringify(req.body));
-        let {teacher_name, email, password} = req.body;
+        let {teacher_name, email, password, admin} = req.body;
 
-        const newTeacher = await Teacher.create({teacher_name, email, password});
+        const newTeacher = await Teacher.create({teacher_name, email, password, admin});
         console.log("---> newTeacher :" + JSON.stringify(newTeacher));
 
 
@@ -193,7 +199,23 @@ router.post('/newUser', async (req, res) => {
 
         const dbClassroomData = await Teacher.findByPk(teacher_id, {include: Classroom});
         const classroom = dbClassroomData.get({plain: true});
-        res.render('dashboard', {classroom, session: req.session});
+        //res.render('dashboard', {classroom, session: req.session});
+
+
+    } catch (e) {
+        console.error(" ++++ " + __filename + " " + e.message);
+    }
+});
+
+router.get('/newTeacher', async (req, res) => {
+    console.log("---> newTeacher :");
+    try {
+
+
+        const dbTeacherData = await Teacher.findAll({order: [['created_at', 'DESC']]});
+        const teachers = dbTeacherData.map(x => x.get({plain: true}));
+        console.log("---> teachers :" + JSON.stringify(teachers));
+        res.render('newTeacher', {teachers, session: req.session});
 
 
     } catch (e) {
